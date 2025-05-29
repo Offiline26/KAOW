@@ -29,6 +29,7 @@ public class UsuarioService {
 
         Usuario novo = UsuarioMapper.toEntity(dto);
         return usuarioRepository.save(novo);
+
     }
 }
 
