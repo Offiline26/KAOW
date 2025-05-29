@@ -26,6 +26,11 @@ public class UsuarioController {
         UsuarioDTO response = UsuarioMapper.toDto(user);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
+
+    @GetMapping("/")
+    public String status() {
+        return "KAOW backend rodando!";
+    }
 }
 
 
