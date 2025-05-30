@@ -31,22 +31,6 @@ public class UsuarioController {
         UsuarioDTO response = UsuarioMapper.toDto(user);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
-
-    @PostMapping("/auth/login")
-    public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
-        Usuario usuario = UsuarioRepository.findByNomeUsuario(loginRequest.getNomeUsuario())
-                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
-
-        if (!passwordEncoder.matches(loginRequest.getSenha(), usuario.getSenha())) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Senha inválida");
-        }
-
-        // Não retornar a senha!
-        UsuarioDTO dto = UsuarioMapper.toDto(usuario);
-        dto.setSenha(null);
-
-        return ResponseEntity.ok(dto);
-    }
 }
 
 
