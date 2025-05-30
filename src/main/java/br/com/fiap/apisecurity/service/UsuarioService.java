@@ -27,6 +27,10 @@ public class UsuarioService {
             throw new RuntimeException("Email já cadastrado");
         }
 
+        if (usuarioRepository.existsByNomeUsuario(dto.getNomeUsuario())) {
+            throw new RuntimeException("Nome de usuário já está em uso");
+        }
+
         Usuario novo = UsuarioMapper.toEntity(dto);
         return usuarioRepository.save(novo);
 

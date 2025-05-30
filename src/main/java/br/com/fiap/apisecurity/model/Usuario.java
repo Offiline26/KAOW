@@ -25,6 +25,9 @@ public class Usuario {
     @Column(nullable = false, unique = true)
     private String email;
 
+    @Column(unique = true, nullable = false)
+    private String nomeUsuario;
+
     public Long getId() {
         return id;
     }
@@ -35,6 +38,14 @@ public class Usuario {
 
     public String getNome() {
         return nome;
+    }
+
+    public String getNomeUsuario() {
+        return nomeUsuario;
+    }
+
+    public void setNomeUsuario(String nomeUsuario) {
+        this.nomeUsuario = nomeUsuario;
     }
 
     public void setNome(String nome) {

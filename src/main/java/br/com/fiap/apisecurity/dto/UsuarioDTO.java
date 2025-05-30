@@ -14,6 +14,7 @@ public class UsuarioDTO {
     private String nome;
     private String senha;
     private String email;
+    private String nomeUsuario;
 
     public UsuarioDTO() {}
 
@@ -25,10 +26,19 @@ public class UsuarioDTO {
         this.senha = senha;
     }
 
-    public UsuarioDTO(String nome, String senha, String email) {
+    public UsuarioDTO(String nome, String senha, String email, String nomeUsuario) {
         this.nome = nome;
         this.senha = senha;
         this.email = email;
+        this.nomeUsuario = nomeUsuario;
+    }
+
+    public String getNomeUsuario() {
+        return nomeUsuario;
+    }
+
+    public void setNomeUsuario(String nomeUsuario) {
+        this.nomeUsuario = nomeUsuario;
     }
 
     public String getNome() {
