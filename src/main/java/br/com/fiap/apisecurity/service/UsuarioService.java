@@ -19,10 +19,6 @@ public class UsuarioService {
     private UsuarioRepository usuarioRepository;
 
     public Usuario cadastrar(UsuarioDTO dto) {
-        if (usuarioRepository.existsByNome(dto.getNome())) {
-            throw new RuntimeException("Nome já cadastrado");
-        }
-
         if (usuarioRepository.existsByEmail(dto.getEmail())) {
             throw new RuntimeException("Email já cadastrado");
         }

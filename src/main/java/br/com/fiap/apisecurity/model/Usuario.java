@@ -25,8 +25,18 @@ public class Usuario {
     @Column(nullable = false, unique = true)
     private String email;
 
+    public Usuario(Long id, String nome, String senha, String email, String nomeUsuario) {
+        this.id = id;
+        this.nome = nome;
+        this.senha = senha;
+        this.email = email;
+        this.nomeUsuario = nomeUsuario;
+    }
+
     @Column(unique = true, nullable = false)
     private String nomeUsuario;
+
+    public Usuario(){}
 
     public Long getId() {
         return id;

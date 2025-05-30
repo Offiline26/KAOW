@@ -3,9 +3,6 @@ package br.com.fiap.apisecurity.mapper;
 import br.com.fiap.apisecurity.dto.UsuarioDTO;
 import br.com.fiap.apisecurity.model.Usuario;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 public final class UsuarioMapper {
 
     private UsuarioMapper() {}
@@ -27,6 +24,7 @@ public final class UsuarioMapper {
         dto.setNomeUsuario(usuario.getNomeUsuario());
         return dto;
     }
+
 }
 
 
