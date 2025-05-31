@@ -5,12 +5,7 @@ import br.com.fiap.apisecurity.mapper.UsuarioMapper;
 import br.com.fiap.apisecurity.model.Usuario;
 import br.com.fiap.apisecurity.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class UsuarioService {
@@ -18,7 +13,7 @@ public class UsuarioService {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
-    public Usuario cadastrar(UsuarioDTO dto) {
+    public UsuarioDTO cadastrar(UsuarioDTO dto) {
         if (usuarioRepository.existsByEmail(dto.getEmail())) {
             throw new RuntimeException("Email já cadastrado");
         }
@@ -28,8 +23,11 @@ public class UsuarioService {
         }
 
         Usuario novo = UsuarioMapper.toEntity(dto);
-        return usuarioRepository.save(novo);
+        // Salvar a senha exatamente como está no DTO (texto puro)
+        novo.setSenha(dto.getSenha());
+        novo = usuarioRepository.save(novo);
 
+        return UsuarioMapper.toDto(novo);
     }
 }
 

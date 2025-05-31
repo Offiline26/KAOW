@@ -1,12 +1,6 @@
 package br.com.fiap.apisecurity.model;
 
-import br.com.fiap.apisecurity.model.enums.CargoUsuario;
 import jakarta.persistence.*;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-
-import java.util.Collection;
-import java.util.Collections;
 
 @Entity
 @Table(name = "tb_usuario")
