@@ -5,31 +5,38 @@ import br.com.fiap.apisecurity.mapper.UsuarioMapper;
 import br.com.fiap.apisecurity.model.Usuario;
 import br.com.fiap.apisecurity.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UsuarioService {
 
-    @Autowired
-    private UsuarioRepository usuarioRepository;
+    private final UsuarioRepository usuarioRepository;
+    private final UsuarioMapper usuarioMapper;
+    private final PasswordEncoder passwordEncoder;
 
-    public UsuarioDTO cadastrar(UsuarioDTO dto) {
-        if (usuarioRepository.existsByEmail(dto.getEmail())) {
-            throw new RuntimeException("Email já cadastrado");
-        }
+    public UsuarioService(UsuarioRepository usuarioRepository, UsuarioMapper usuarioMapper, PasswordEncoder passwordEncoder) {
+        this.usuarioRepository = usuarioRepository;
+        this.usuarioMapper = usuarioMapper;
+        this.passwordEncoder = passwordEncoder;
+    }
 
-        if (usuarioRepository.existsByNomeUsuario(dto.getNomeUsuario())) {
-            throw new RuntimeException("Nome de usuário já está em uso");
-        }
+    public UsuarioDTO cadastrarUsuario(UsuarioDTO dto) {
+        // Converte DTO para entidade
+        Usuario usuario = usuarioMapper.toEntity(dto);
 
-        Usuario novo = UsuarioMapper.toEntity(dto);
-        // Salvar a senha exatamente como está no DTO (texto puro)
-        novo.setSenha(dto.getSenha());
-        novo = usuarioRepository.save(novo);
+        // Codifica a senha antes de salvar
+        String senhaCodificada = passwordEncoder.encode(dto.getSenha());
+        usuario.setSenha(senhaCodificada);
 
-        return UsuarioMapper.toDto(novo);
+        // Salva no banco
+        Usuario salvo = usuarioRepository.save(usuario);
+
+        // Converte entidade salva para DTO e retorna
+        return usuarioMapper.toDTO(salvo);
     }
 }
+
 
 
 
