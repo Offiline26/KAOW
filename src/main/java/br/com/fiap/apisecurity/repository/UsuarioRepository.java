@@ -1,14 +1,13 @@
 package br.com.fiap.apisecurity.repository;
 import br.com.fiap.apisecurity.model.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
+@Repository
 public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
-    boolean existsByNome(String nome);
-    boolean existsByEmail(String email);
+    Optional<Usuario> findByNomeUsuario(String nomeUsuario);
 }
 
 

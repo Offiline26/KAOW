@@ -1,30 +1,32 @@
 package br.com.fiap.apisecurity.mapper;
 
 import br.com.fiap.apisecurity.dto.UsuarioDTO;
+import br.com.fiap.apisecurity.model.TipoUsuario;
 import br.com.fiap.apisecurity.model.Usuario;
+import org.springframework.stereotype.Component;
 
-import java.util.List;
-import java.util.stream.Collectors;
+@Component
+public class UsuarioMapper {
 
-public final class UsuarioMapper {
-
-    private UsuarioMapper() {}
-
-    public static Usuario toEntity(UsuarioDTO dto) {
+    public Usuario toEntity(UsuarioDTO dto, TipoUsuario tipoUsuario) {
         Usuario usuario = new Usuario();
         usuario.setNome(dto.getNome());
+        usuario.setNomeUsuario(dto.getNomeUsuario());
         usuario.setEmail(dto.getEmail());
         usuario.setSenha(dto.getSenha());
+        usuario.setTipoUsuario(tipoUsuario);
         return usuario;
     }
 
-    public static UsuarioDTO toDto(Usuario usuario) {
+    public UsuarioDTO toDTO(Usuario usuario) {
         UsuarioDTO dto = new UsuarioDTO();
         dto.setNome(usuario.getNome());
+        dto.setNomeUsuario(usuario.getNomeUsuario());
         dto.setEmail(usuario.getEmail());
-        dto.setSenha(usuario.getSenha());
+        dto.setIdTipoUsuario(usuario.getTipoUsuario().getId());
         return dto;
     }
 }
+
 
 

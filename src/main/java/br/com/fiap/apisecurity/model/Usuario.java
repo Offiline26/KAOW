@@ -1,29 +1,27 @@
 package br.com.fiap.apisecurity.model;
 
-import br.com.fiap.apisecurity.model.enums.CargoUsuario;
 import jakarta.persistence.*;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-
-import java.util.Collection;
-import java.util.Collections;
 
 @Entity
-@Table(name = "tb_usuario")
+@Table(name = "usuario")
 public class Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_usuario")
     private Long id;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false, length = 100)
     private String nome;
 
-    @Column(nullable = false)
-    private String senha;
+    @Column(name = "nome_usuario", nullable = false, length = 25)
+    private String nomeUsuario;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false, length = 100)
     private String email;
+
+    @Column(nullable = false, length = 25)
+    private String senha;
 
     public Long getId() {
         return id;
@@ -41,12 +39,12 @@ public class Usuario {
         this.nome = nome;
     }
 
-    public String getSenha() {
-        return senha;
+    public String getNomeUsuario() {
+        return nomeUsuario;
     }
 
-    public void setSenha(String senha) {
-        this.senha = senha;
+    public void setNomeUsuario(String nomeUsuario) {
+        this.nomeUsuario = nomeUsuario;
     }
 
     public String getEmail() {
@@ -56,4 +54,24 @@ public class Usuario {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
+    public TipoUsuario getTipoUsuario() {
+        return tipoUsuario;
+    }
+
+    public void setTipoUsuario(TipoUsuario tipoUsuario) {
+        this.tipoUsuario = tipoUsuario;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "id_tipo_usuario", nullable = false)
+    private TipoUsuario tipoUsuario;
 }

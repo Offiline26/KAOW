@@ -10,26 +10,11 @@ import java.util.UUID;
 
 public class UsuarioDTO {
 
-
     private String nome;
-    private String senha;
+    private String nomeUsuario;
     private String email;
-
-    public UsuarioDTO() {}
-
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
-
-    public UsuarioDTO(String nome, String senha, String email) {
-        this.nome = nome;
-        this.senha = senha;
-        this.email = email;
-    }
+    private String senha;
+    private Long idTipoUsuario;
 
     public String getNome() {
         return nome;
@@ -39,12 +24,36 @@ public class UsuarioDTO {
         this.nome = nome;
     }
 
+    public String getNomeUsuario() {
+        return nomeUsuario;
+    }
+
+    public void setNomeUsuario(String nomeUsuario) {
+        this.nomeUsuario = nomeUsuario;
+    }
+
     public String getEmail() {
         return email;
     }
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
+    public Long getIdTipoUsuario() {
+        return idTipoUsuario;
+    }
+
+    public void setIdTipoUsuario(Long idTipoUsuario) {
+        this.idTipoUsuario = idTipoUsuario;
     }
 }
 

@@ -14,22 +14,18 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/usuarios")
-@CrossOrigin(origins = "*")
 public class UsuarioController {
 
-    @Autowired
-    private UsuarioService usuarioService;
+    private final UsuarioService usuarioService;
+
+    public UsuarioController(UsuarioService usuarioService) {
+        this.usuarioService = usuarioService;
+    }
 
     @PostMapping("/cadastro")
     public ResponseEntity<UsuarioDTO> cadastrar(@RequestBody UsuarioDTO dto) {
-        Usuario user = usuarioService.cadastrar(dto);
-        UsuarioDTO response = UsuarioMapper.toDto(user);
-        return ResponseEntity.status(HttpStatus.CREATED).body(response);
-    }
-
-    @GetMapping("/")
-    public String status() {
-        return "KAOW backend rodando!";
+        UsuarioDTO criado = usuarioService.cadastrarUsuario(dto);
+        return ResponseEntity.status(HttpStatus.CREATED).body(criado);
     }
 }
 

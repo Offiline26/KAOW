@@ -2,36 +2,43 @@ package br.com.fiap.apisecurity.service;
 
 import br.com.fiap.apisecurity.dto.UsuarioDTO;
 import br.com.fiap.apisecurity.mapper.UsuarioMapper;
+import br.com.fiap.apisecurity.model.TipoUsuario;
 import br.com.fiap.apisecurity.model.Usuario;
+import br.com.fiap.apisecurity.repository.TipoUsuarioRepository;
 import br.com.fiap.apisecurity.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-
-import java.util.List;
-import java.util.stream.Collectors;
-
 @Service
 public class UsuarioService {
 
-    @Autowired
-    private UsuarioRepository usuarioRepository;
+    private final UsuarioRepository usuarioRepository;
+    private final TipoUsuarioRepository tipoUsuarioRepository;
+    private final UsuarioMapper usuarioMapper;
+    private final PasswordEncoder passwordEncoder;
 
-    public Usuario cadastrar(UsuarioDTO dto) {
-        if (usuarioRepository.existsByNome(dto.getNome())) {
-            throw new RuntimeException("Nome já cadastrado");
-        }
+    public UsuarioService(UsuarioRepository usuarioRepository, TipoUsuarioRepository tipoUsuarioRepository,
+                          UsuarioMapper usuarioMapper, PasswordEncoder passwordEncoder) {
+        this.usuarioRepository = usuarioRepository;
+        this.tipoUsuarioRepository = tipoUsuarioRepository;
+        this.usuarioMapper = usuarioMapper;
+        this.passwordEncoder = passwordEncoder;
+    }
 
-        if (usuarioRepository.existsByEmail(dto.getEmail())) {
-            throw new RuntimeException("Email já cadastrado");
-        }
+    public UsuarioDTO cadastrarUsuario(UsuarioDTO dto) {
+        TipoUsuario tipo = tipoUsuarioRepository.findById(dto.getIdTipoUsuario())
+                .orElseThrow(() -> new RuntimeException("Tipo de usuário inválido"));
 
-        Usuario novo = UsuarioMapper.toEntity(dto);
-        return usuarioRepository.save(novo);
+        dto.setSenha(passwordEncoder.encode(dto.getSenha()));
 
+        Usuario usuario = usuarioMapper.toEntity(dto, tipo);
+        Usuario salvo = usuarioRepository.save(usuario);
+
+        return usuarioMapper.toDTO(salvo);
     }
 }
+
 
 
 
