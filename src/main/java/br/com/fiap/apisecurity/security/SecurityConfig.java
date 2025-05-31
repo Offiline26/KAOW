@@ -29,10 +29,10 @@ public class SecurityConfig {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**")
-                        .allowedOrigins("http://localhost:19006") // URL do Expo, ajuste se precisar
-                        .allowedMethods("*")
-                        .allowedHeaders("*")
+                registry.addMapping("/*")
+                        .allowedOrigins("http://localhost:8081/", "http://localhost:19006") // ajuste conforme sua porta
+                        .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
+                        .allowedHeaders("")
                         .allowCredentials(true);
             }
         };
