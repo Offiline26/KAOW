@@ -1,5 +1,6 @@
 package br.com.fiap.apisecurity.controller;
 
+import br.com.fiap.apisecurity.dto.ErrorResponse;
 import br.com.fiap.apisecurity.dto.LoginRequest;
 import br.com.fiap.apisecurity.dto.LoginResponse;
 import br.com.fiap.apisecurity.repository.UsuarioRepository;
@@ -21,14 +22,24 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest login) {
+        System.out.println("Tentando login para: " + login.getNomeUsuario());
         var usuario = usuarioRepository.findByNomeUsuario(login.getNomeUsuario());
 
-        if (usuario.isEmpty()) return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Usuário não encontrado");
+        if (usuario.isEmpty()) {
+            System.out.println("Usuário não encontrado");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                    .body(new ErrorResponse("Usuário não encontrado"));
+        }
 
-        if (!usuario.get().getSenha().equals(login.getSenha()))
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Senha incorreta");
+        if (!usuario.get().getSenha().equals(login.getSenha())) {
+            System.out.println("Senha incorreta");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                    .body(new ErrorResponse("Senha incorreta"));
+        }
 
         String token = jwtService.generateToken(usuario.get().getNomeUsuario());
+        System.out.println("Login bem sucedido para: " + login.getNomeUsuario());
         return ResponseEntity.ok(new LoginResponse(token, usuario.get()));
     }
+
 }
