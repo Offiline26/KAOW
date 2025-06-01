@@ -24,6 +24,12 @@ public class UsuarioController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
     }
+
+    @GetMapping("/teste")
+    public String teste() {
+        return "API está viva!";
+    }
+
 }
 
 
