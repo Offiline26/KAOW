@@ -9,7 +9,7 @@ public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_usuario")
-    private Long id;
+    private Integer id;
 
     @Column(nullable = false, length = 100)
     private String nome;
@@ -23,11 +23,15 @@ public class Usuario {
     @Column(nullable = false, length = 25)
     private String senha;
 
-    public Long getId() {
+    @ManyToOne
+    @JoinColumn(name = "id_tipo_usuario")
+    private TipoUsuario tipoUsuario;
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -71,7 +75,4 @@ public class Usuario {
         this.tipoUsuario = tipoUsuario;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "id_tipo_usuario", nullable = false)
-    private TipoUsuario tipoUsuario;
 }

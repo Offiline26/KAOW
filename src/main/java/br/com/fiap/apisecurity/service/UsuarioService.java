@@ -1,5 +1,6 @@
 package br.com.fiap.apisecurity.service;
 
+
 import br.com.fiap.apisecurity.dto.UsuarioDTO;
 import br.com.fiap.apisecurity.mapper.UsuarioMapper;
 import br.com.fiap.apisecurity.model.TipoUsuario;
@@ -15,27 +16,30 @@ public class UsuarioService {
 
     private final UsuarioRepository usuarioRepository;
     private final TipoUsuarioRepository tipoUsuarioRepository;
-    private final UsuarioMapper usuarioMapper;
+    private final UsuarioMapper mapper;
     private final PasswordEncoder passwordEncoder;
 
-    public UsuarioService(UsuarioRepository usuarioRepository, TipoUsuarioRepository tipoUsuarioRepository,
-                          UsuarioMapper usuarioMapper, PasswordEncoder passwordEncoder) {
+    @Autowired
+    public UsuarioService(
+            UsuarioRepository usuarioRepository,
+            TipoUsuarioRepository tipoUsuarioRepository,
+            UsuarioMapper mapper,
+            PasswordEncoder passwordEncoder
+    ) {
         this.usuarioRepository = usuarioRepository;
         this.tipoUsuarioRepository = tipoUsuarioRepository;
-        this.usuarioMapper = usuarioMapper;
+        this.mapper = mapper;
         this.passwordEncoder = passwordEncoder;
     }
 
-    public UsuarioDTO cadastrarUsuario(UsuarioDTO dto) {
-        TipoUsuario tipo = tipoUsuarioRepository.findById(dto.getIdTipoUsuario())
-                .orElseThrow(() -> new RuntimeException("Tipo de usuário inválido"));
+    public Usuario salvar(UsuarioDTO dto) {
+        TipoUsuario tipo = tipoUsuarioRepository.findById(dto.getIdTipoUsuario().longValue())
+                .orElseThrow(() -> new RuntimeException("TipoUsuario nao encontrado"));
 
-        dto.setSenha(passwordEncoder.encode(dto.getSenha()));
+        Usuario usuario = mapper.toEntity(dto, tipo);
+        usuario.setSenha(passwordEncoder.encode(dto.getSenha()));
 
-        Usuario usuario = usuarioMapper.toEntity(dto, tipo);
-        Usuario salvo = usuarioRepository.save(usuario);
-
-        return usuarioMapper.toDTO(salvo);
+        return usuarioRepository.save(usuario);
     }
 }
 
