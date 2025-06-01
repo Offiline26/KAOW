@@ -1,22 +1,22 @@
 package br.com.fiap.apisecurity.dto;
 
 public class LoginRequest {
-    private String username;
-    private String password;
+    private String NomeUsuario;
+    private String senha;
 
-    public String getUsername() {
-        return username;
+    public String getNomeUsuario() {
+        return NomeUsuario;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setNomeUsuario(String nomeUsuario) {
+        NomeUsuario = nomeUsuario;
     }
 
-    public String getPassword() {
-        return password;
+    public String getSenha() {
+        return senha;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 }

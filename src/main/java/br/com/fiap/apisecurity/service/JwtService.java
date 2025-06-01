@@ -13,7 +13,7 @@ import java.util.Date;
 @Service
 public class JwtService {
 
-    private static final String SECRET_KEY = "minha-chave-secreta-supersegura";
+    private static final String SECRET_KEY = "eD7C5x1r!9q@3lYf%Z*MwK9^PxLsTnHr";
 
     private Key getSigningKey() {
         byte[] keyBytes = SECRET_KEY.getBytes(StandardCharsets.UTF_8);
@@ -22,7 +22,7 @@ public class JwtService {
 
     public String generateToken(UserDetails userDetails) {
         return Jwts.builder()
-                .setSubject(userDetails.getUsername())
+                .setSubject(userDetails.getUsername()) // username vindo do UserDetails
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis() + 86400000)) // 1 dia
                 .signWith(getSigningKey(), SignatureAlgorithm.HS256)
