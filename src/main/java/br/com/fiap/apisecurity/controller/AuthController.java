@@ -2,6 +2,8 @@ package br.com.fiap.apisecurity.controller;
 
 import br.com.fiap.apisecurity.dto.LoginRequest;
 import br.com.fiap.apisecurity.dto.LoginResponse;
+import br.com.fiap.apisecurity.model.Usuario;
+import br.com.fiap.apisecurity.repository.UsuarioRepository;
 import br.com.fiap.apisecurity.service.JwtService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +13,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,14 +25,14 @@ public class AuthController {
 
     private final AuthenticationManager authenticationManager;
     private final JwtService jwtService;
-    private final UserDetailsService userDetailsService;
+    private final UsuarioRepository usuarioRepository;
 
     public AuthController(AuthenticationManager authenticationManager,
                           JwtService jwtService,
-                          UserDetailsService userDetailsService) {
+                          UsuarioRepository usuarioRepository) {
         this.authenticationManager = authenticationManager;
         this.jwtService = jwtService;
-        this.userDetailsService = userDetailsService;
+        this.usuarioRepository = usuarioRepository;
     }
 
     @PostMapping("/login")
@@ -38,6 +41,9 @@ public class AuthController {
             Authentication authentication = authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword())
             );
+
+            Usuario usuario = usuarioRepository.findByNomeUsuario(request.getUsername())
+                    .orElseThrow(() -> new UsernameNotFoundException("Usuário não encontrado"));
 
             UserDetails user = (UserDetails) authentication.getPrincipal();
             String token = jwtService.generateToken(user);

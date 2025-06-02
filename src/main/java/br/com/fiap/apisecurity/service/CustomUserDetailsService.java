@@ -2,12 +2,14 @@ package br.com.fiap.apisecurity.service;
 
 import br.com.fiap.apisecurity.model.Usuario;
 import br.com.fiap.apisecurity.repository.UsuarioRepository;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
@@ -26,7 +28,7 @@ public class CustomUserDetailsService implements UserDetailsService {
         return new org.springframework.security.core.userdetails.User(
                 usuario.getNomeUsuario(),
                 usuario.getSenha(),
-                new ArrayList<>() // lista de permissões, por enquanto vazia
+                List.of(new SimpleGrantedAuthority("ROLE_USER"))
         );
     }
 }
