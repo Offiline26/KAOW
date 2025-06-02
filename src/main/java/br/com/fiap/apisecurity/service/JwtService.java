@@ -13,7 +13,7 @@ import java.util.Date;
 @Service
 public class JwtService {
 
-    private static final String SECRET_KEY = "minha-chave-secreta-supersegura";
+    private static final String SECRET_KEY = "minha-chave-secreta-supersegura-fiap-global-solution";
 
     private Key getSigningKey() {
         byte[] keyBytes = SECRET_KEY.getBytes(StandardCharsets.UTF_8);

@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: kaow
+    env: java
+    region: oregon
+    plan: free
+    buildCommand: "./gradlew bootJar"
+    startCommand: "java -jar build/libs/app.jar"
+    envVars:
+      - key: SPRING_DATASOURCE_URL
+        value: jdbc:oracle:thin:@oracle.fiap.com.br:1521/ORCL
+      - key: SPRING_DATASOURCE_USERNAME
+        value: rm558475
+      - key: SPRING_DATASOURCE_PASSWORD
+        value: 210306
+      - key: SPRING_DATASOURCE_DRIVER_CLASS_NAME
+        value: oracle.jdbc.OracleDriver
+      - key: SPRING_JPA_DATABASE_PLATFORM
+        value: org.hibernate.dialect.OracleDialect
+      - key: SPRING_JPA_HIBERNATE_DDL_AUTO
+        value: none
+      - key: SERVER_PORT
+        value: 8080
+      - key: SPRING_JPA_OPEN_IN_VIEW
+        value: false
