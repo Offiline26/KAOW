@@ -19,6 +19,7 @@ public class UsuarioService {
     private final UsuarioMapper mapper;
     private final PasswordEncoder passwordEncoder;
 
+    //Comentario
     @Autowired
     public UsuarioService(
             UsuarioRepository usuarioRepository,
