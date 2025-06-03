@@ -47,7 +47,7 @@ public class AuthController {
             UserDetails user = (UserDetails) authentication.getPrincipal();
             String token = jwtService.generateToken(user);
 
-            return ResponseEntity.ok(new LoginResponse(token));
+            return ResponseEntity.ok(new LoginResponse(token, usuario.getId(), usuario.getTipoUsuario().getId()));
         } catch (BadCredentialsException e) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Usuário ou senha inválidos");
         }
