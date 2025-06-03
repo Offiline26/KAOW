@@ -14,19 +14,10 @@ public class Cidade {
     @Column(name = "id_cidade")
     private Long id;
 
-    @NotBlank(message = "O nome da cidade é obrigatório")
-    @Size(min = 2, max = 50, message = "O nome da cidade deve ter entre 2 e 50 caracteres")
+    @NotBlank(message = "Nome da cidade é obrigatório")
+    @Size(min = 2, max = 50)
     @Column(name = "cidade", nullable = false, length = 50)
-    private String nome;
-
-    @OneToMany(mappedBy = "cidade", cascade = CascadeType.ALL)
-    private List<Bairro> bairros;
-
-    public Cidade() {}
-
-    public Cidade(String nome) {
-        this.nome = nome;
-    }
+    private String cidade; // <- nome do campo precisa ser "cidade"
 
     public Long getId() {
         return id;
@@ -36,19 +27,12 @@ public class Cidade {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+    public String getCidade() {
+        return cidade;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public List<Bairro> getBairros() {
-        return bairros;
-    }
-
-    public void setBairros(List<Bairro> bairros) {
-        this.bairros = bairros;
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
     }
 }
+

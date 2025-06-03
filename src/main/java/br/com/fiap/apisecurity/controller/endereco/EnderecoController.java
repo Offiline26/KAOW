@@ -40,17 +40,4 @@ public class EnderecoController {
         Endereco novo = enderecoService.salvar(EnderecoMapper.toEntity(dto));
         return ResponseEntity.ok(EnderecoMapper.toDTO(novo));
     }
-
-    @PutMapping("/{id}")
-    public ResponseEntity<EnderecoDTO> atualizar(@PathVariable Long id, @RequestBody @Valid EnderecoDTO dto) {
-        Endereco endereco = EnderecoMapper.toEntity(dto);
-        Endereco atualizado = enderecoService.atualizar(id, endereco);
-        return ResponseEntity.ok(EnderecoMapper.toDTO(atualizado));
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletar(@PathVariable Long id) {
-        enderecoService.deletar(id);
-        return ResponseEntity.noContent().build();
-    }
 }

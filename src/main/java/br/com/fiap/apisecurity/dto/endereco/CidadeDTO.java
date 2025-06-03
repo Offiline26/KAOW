@@ -15,10 +15,6 @@ public class CidadeDTO {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public String getCidade() {
         return cidade;
     }
@@ -26,4 +22,10 @@ public class CidadeDTO {
     public void setCidade(String cidade) {
         this.cidade = cidade;
     }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+
 }
