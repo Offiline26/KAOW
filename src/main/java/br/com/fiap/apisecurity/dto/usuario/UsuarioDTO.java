@@ -6,7 +6,7 @@ public class UsuarioDTO {
     private String nomeUsuario;
     private String email;
     private String senha;
-    private Integer idTipoUsuario = 1 ;
+    private Integer idTipoUsuario = 1;
 
     public String getNome() {
         return nome;
