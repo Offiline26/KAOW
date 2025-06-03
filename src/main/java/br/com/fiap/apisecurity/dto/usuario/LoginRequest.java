@@ -1,4 +1,4 @@
-package br.com.fiap.apisecurity.dto;
+package br.com.fiap.apisecurity.dto.usuario;
 
 public class LoginRequest {
     private String username;

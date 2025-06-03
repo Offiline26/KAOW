@@ -1,8 +1,8 @@
-package br.com.fiap.apisecurity.mapper;
+package br.com.fiap.apisecurity.mapper.usuario;
 
-import br.com.fiap.apisecurity.dto.UsuarioDTO;
-import br.com.fiap.apisecurity.model.TipoUsuario;
-import br.com.fiap.apisecurity.model.Usuario;
+import br.com.fiap.apisecurity.dto.usuario.UsuarioDTO;
+import br.com.fiap.apisecurity.model.usuarios.TipoUsuario;
+import br.com.fiap.apisecurity.model.usuarios.Usuario;
 import org.springframework.stereotype.Component;
 
 @Component

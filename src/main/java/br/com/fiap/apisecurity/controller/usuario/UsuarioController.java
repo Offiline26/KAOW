@@ -1,8 +1,8 @@
-package br.com.fiap.apisecurity.controller;
+package br.com.fiap.apisecurity.controller.usuario;
 
-import br.com.fiap.apisecurity.dto.UsuarioDTO;
-import br.com.fiap.apisecurity.model.Usuario;
-import br.com.fiap.apisecurity.service.UsuarioService;
+import br.com.fiap.apisecurity.dto.usuario.UsuarioDTO;
+import br.com.fiap.apisecurity.model.usuarios.Usuario;
+import br.com.fiap.apisecurity.service.usuario.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

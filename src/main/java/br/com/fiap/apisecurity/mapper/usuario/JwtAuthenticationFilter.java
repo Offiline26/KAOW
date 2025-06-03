@@ -1,6 +1,6 @@
-package br.com.fiap.apisecurity.mapper;
+package br.com.fiap.apisecurity.mapper.usuario;
 
-import br.com.fiap.apisecurity.service.JwtService;
+import br.com.fiap.apisecurity.service.usuario.JwtService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

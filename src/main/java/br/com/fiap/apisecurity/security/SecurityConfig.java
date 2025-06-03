@@ -1,10 +1,9 @@
 package br.com.fiap.apisecurity.security;
 
-import br.com.fiap.apisecurity.mapper.JwtAuthenticationFilter;
-import br.com.fiap.apisecurity.service.CustomUserDetailsService;
+import br.com.fiap.apisecurity.mapper.usuario.JwtAuthenticationFilter;
+import br.com.fiap.apisecurity.service.usuario.CustomUserDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.Customizer;

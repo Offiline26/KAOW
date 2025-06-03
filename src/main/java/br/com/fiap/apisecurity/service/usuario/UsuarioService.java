@@ -1,12 +1,12 @@
-package br.com.fiap.apisecurity.service;
+package br.com.fiap.apisecurity.service.usuario;
 
 
-import br.com.fiap.apisecurity.dto.UsuarioDTO;
-import br.com.fiap.apisecurity.mapper.UsuarioMapper;
-import br.com.fiap.apisecurity.model.TipoUsuario;
-import br.com.fiap.apisecurity.model.Usuario;
-import br.com.fiap.apisecurity.repository.TipoUsuarioRepository;
-import br.com.fiap.apisecurity.repository.UsuarioRepository;
+import br.com.fiap.apisecurity.dto.usuario.UsuarioDTO;
+import br.com.fiap.apisecurity.mapper.usuario.UsuarioMapper;
+import br.com.fiap.apisecurity.model.usuarios.TipoUsuario;
+import br.com.fiap.apisecurity.model.usuarios.Usuario;
+import br.com.fiap.apisecurity.repository.usuario.TipoUsuarioRepository;
+import br.com.fiap.apisecurity.repository.usuario.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

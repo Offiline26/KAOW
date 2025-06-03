@@ -1,10 +1,10 @@
-package br.com.fiap.apisecurity.controller;
+package br.com.fiap.apisecurity.controller.usuario;
 
-import br.com.fiap.apisecurity.dto.LoginRequest;
-import br.com.fiap.apisecurity.dto.LoginResponse;
-import br.com.fiap.apisecurity.model.Usuario;
-import br.com.fiap.apisecurity.repository.UsuarioRepository;
-import br.com.fiap.apisecurity.service.JwtService;
+import br.com.fiap.apisecurity.dto.usuario.LoginRequest;
+import br.com.fiap.apisecurity.dto.usuario.LoginResponse;
+import br.com.fiap.apisecurity.model.usuarios.Usuario;
+import br.com.fiap.apisecurity.repository.usuario.UsuarioRepository;
+import br.com.fiap.apisecurity.service.usuario.JwtService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -12,7 +12,6 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

@@ -1,14 +1,13 @@
-package br.com.fiap.apisecurity.service;
+package br.com.fiap.apisecurity.service.usuario;
 
-import br.com.fiap.apisecurity.model.Usuario;
-import br.com.fiap.apisecurity.repository.UsuarioRepository;
+import br.com.fiap.apisecurity.model.usuarios.Usuario;
+import br.com.fiap.apisecurity.repository.usuario.UsuarioRepository;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service

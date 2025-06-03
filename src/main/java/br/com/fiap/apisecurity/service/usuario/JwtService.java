@@ -1,4 +1,4 @@
-package br.com.fiap.apisecurity.service;
+package br.com.fiap.apisecurity.service.usuario;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
