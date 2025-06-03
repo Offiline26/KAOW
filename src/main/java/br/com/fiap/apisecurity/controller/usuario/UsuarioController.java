@@ -1,12 +1,19 @@
 package br.com.fiap.apisecurity.controller.usuario;
 
+import br.com.fiap.apisecurity.dto.usuario.UpdateUsuarioDTO;
 import br.com.fiap.apisecurity.dto.usuario.UsuarioDTO;
 import br.com.fiap.apisecurity.model.usuarios.Usuario;
+import br.com.fiap.apisecurity.repository.usuario.UsuarioRepository;
 import br.com.fiap.apisecurity.service.usuario.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/usuarios")
@@ -14,6 +21,12 @@ public class UsuarioController {
 
     @Autowired
     private UsuarioService usuarioService;
+
+    @Autowired
+    private UsuarioRepository usuarioRepository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @PostMapping("/cadastro")
     public ResponseEntity<?> cadastrar(@RequestBody UsuarioDTO dto) {
@@ -24,6 +37,28 @@ public class UsuarioController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
     }
+
+    @PutMapping("/atualizar")
+    public ResponseEntity<?> atualizarPerfil(
+            @RequestBody UpdateUsuarioDTO dto,
+            @AuthenticationPrincipal UserDetails userDetails) {
+
+        Optional<Usuario> optional = usuarioRepository.findByNomeUsuario(userDetails.getUsername());
+        if (optional.isEmpty()) return ResponseEntity.status(404).body("Usuário não encontrado");
+
+        Usuario usuario = optional.get();
+
+        if (!passwordEncoder.matches(dto.getSenha(), usuario.getSenha())) {
+            return ResponseEntity.status(401).body("Senha incorreta");
+        }
+
+        usuario.setNome(dto.getNome());
+        usuario.setNomeUsuario(dto.getNomeUsuario());
+        usuarioRepository.save(usuario);
+
+        return ResponseEntity.ok("Perfil atualizado com sucesso");
+    }
+
 }
 
 
