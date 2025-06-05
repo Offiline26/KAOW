@@ -1,6 +1,7 @@
 package br.com.fiap.apisecurity.dto;
 
 import br.com.fiap.apisecurity.dto.endereco.EnderecoResponse;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.time.LocalDateTime;
 
@@ -8,9 +9,13 @@ public class PostagemResponse {
 
     private Integer id;
     private String conteudo;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss", timezone = "America/Sao_Paulo")
     private LocalDateTime dataPublicacao;
     private String nomeUsuario;
     private EnderecoResponse endereco;
+    private String desastre;
+    private String nivelPerigo;
+    private String statusResolucao;
 
     public Integer getId() {
         return id;
@@ -76,7 +81,5 @@ public class PostagemResponse {
         this.statusResolucao = statusResolucao;
     }
 
-    private String desastre;
-    private String nivelPerigo;
-    private String statusResolucao;
+
 }
