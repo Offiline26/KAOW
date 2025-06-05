@@ -23,7 +23,7 @@ public class ResolucaoController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ResolucaoDTO> findById(@PathVariable Long id) {
+    public ResponseEntity<ResolucaoDTO> findById(@PathVariable Integer id) {
         ResolucaoDTO dto = service.findById(id);
         return dto != null ? ResponseEntity.ok(dto) : ResponseEntity.notFound().build();
     }
@@ -34,7 +34,7 @@ public class ResolucaoController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Long id) {
+    public ResponseEntity<Void> delete(@PathVariable Integer id) {
         service.delete(id);
         return ResponseEntity.noContent().build();
     }

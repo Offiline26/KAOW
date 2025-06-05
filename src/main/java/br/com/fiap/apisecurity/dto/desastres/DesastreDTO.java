@@ -1,14 +1,14 @@
 package br.com.fiap.apisecurity.dto.desastres;
 
 public class DesastreDTO {
-    private Long id;
+    private Integer id;
     private String desastre;
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

@@ -3,15 +3,15 @@ package br.com.fiap.apisecurity.dto.desastres;
 import java.time.LocalDate;
 
 public class ResolucaoDTO {
-    private Long id;
+    private Integer id;
     private LocalDate dataResolucao;
     private String status;
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

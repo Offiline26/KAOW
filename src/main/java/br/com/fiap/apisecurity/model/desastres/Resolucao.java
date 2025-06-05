@@ -10,7 +10,7 @@ public class Resolucao {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_resolucao")
-    private Long id;
+    private Integer id;
 
     @Column(name = "data_resolucao")
     private LocalDate dataResolucao;
@@ -20,11 +20,11 @@ public class Resolucao {
 
     public Resolucao() {}
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

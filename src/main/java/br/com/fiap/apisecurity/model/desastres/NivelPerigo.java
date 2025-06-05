@@ -11,7 +11,7 @@ public class NivelPerigo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_nivel_perigo")
-    private Long id;
+    private Integer id;
 
     @NotNull(message = "O nível de perigo é obrigatório")
     @Size(min = 2, max = 20)
@@ -20,11 +20,11 @@ public class NivelPerigo {
 
     public NivelPerigo() {}
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

@@ -25,7 +25,7 @@ public class ResolucaoService {
                 .collect(Collectors.toList());
     }
 
-    public ResolucaoDTO findById(Long id) {
+    public ResolucaoDTO findById(Integer id) {
         return repository.findById(id)
                 .map(ResolucaoMapper::toDTO)
                 .orElse(null);
@@ -36,7 +36,7 @@ public class ResolucaoService {
         return ResolucaoMapper.toDTO(repository.save(entity));
     }
 
-    public void delete(Long id) {
+    public void delete(Integer id) {
         repository.deleteById(id);
     }
 }

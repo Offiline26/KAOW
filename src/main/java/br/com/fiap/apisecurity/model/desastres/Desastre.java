@@ -11,7 +11,7 @@ public class Desastre {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_desastre")
-    private Long id;
+    private Integer id;
 
     @NotNull(message = "O tipo de desastre é obrigatório")
     @Size(min = 2, max = 30)
@@ -20,11 +20,11 @@ public class Desastre {
 
     public Desastre() {}
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
