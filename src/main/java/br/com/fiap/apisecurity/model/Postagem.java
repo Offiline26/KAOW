@@ -23,7 +23,7 @@ public class Postagem {
     private String conteudo;
 
     @Column(name = "data_publicacao", nullable = false)
-    private LocalDateTime dataPublicacao = LocalDateTime.now(ZoneId.of("America/Sao_Paulo"));
+    private LocalDateTime dataPublicacao;
 
     @ManyToOne
     @JoinColumn(name = "id_resolucao", nullable = false)
