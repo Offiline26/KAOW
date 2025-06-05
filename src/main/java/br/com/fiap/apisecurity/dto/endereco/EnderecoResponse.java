@@ -1,29 +1,12 @@
-package br.com.fiap.apisecurity.model.endereco;
+package br.com.fiap.apisecurity.dto.endereco;
 
-import jakarta.persistence.*;
+public class EnderecoResponse {
 
-@Entity
-@Table(name = "endereco")
-public class Endereco {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_endereco")
     private Integer id;
-
-    @Column(name = "pais", nullable = false)
     private String pais;
-
-    @Column(name = "estado", nullable = false)
     private String estado;
-
-    @Column(name = "cidade", nullable = false)
     private String cidade;
-
-    @Column(name = "bairro", nullable = false)
     private String bairro;
-
-    @Column(name = "logradouro", nullable = false)
     private String logradouro;
 
     public Integer getId() {
@@ -73,6 +56,4 @@ public class Endereco {
     public void setLogradouro(String logradouro) {
         this.logradouro = logradouro;
     }
-
 }
-

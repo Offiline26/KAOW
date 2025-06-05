@@ -42,7 +42,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/auth/login", "/usuarios/**", "/cidades", "/enderecos", "/bairros", "/logradouros").permitAll()
+                        .requestMatchers("/auth/login", "/usuarios/**", "/enderecos", "/", "/logradouros").permitAll()
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session

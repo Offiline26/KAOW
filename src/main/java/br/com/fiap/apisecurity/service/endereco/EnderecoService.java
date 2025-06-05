@@ -1,30 +1,31 @@
 package br.com.fiap.apisecurity.service.endereco;
 
+import br.com.fiap.apisecurity.dto.endereco.EnderecoRequest;
+import br.com.fiap.apisecurity.dto.endereco.EnderecoResponse;
+import br.com.fiap.apisecurity.mapper.endereco.EnderecoMapper;
 import br.com.fiap.apisecurity.model.endereco.Endereco;
 import br.com.fiap.apisecurity.repository.endereco.EnderecoRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class EnderecoService {
 
-    private final EnderecoRepository repository;
+    @Autowired
+    private EnderecoRepository repository;
 
-    public EnderecoService(EnderecoRepository repository) {
-        this.repository = repository;
+    public EnderecoResponse criar(EnderecoRequest request) {
+        Endereco endereco = EnderecoMapper.toEntity(request);
+        repository.save(endereco);
+        return EnderecoMapper.toResponse(endereco);
     }
 
-    public List<Endereco> listarTodos() {
-        return repository.findAll();
-    }
-
-    public Optional<Endereco> buscarPorId(Long id) {
-        return repository.findById(id);
-    }
-
-    public Endereco salvar(Endereco endereco) {
-        return repository.save(endereco);
+    public List<EnderecoResponse> listarTodos() {
+        return repository.findAll()
+                .stream()
+                .map(EnderecoMapper::toResponse)
+                .toList();
     }
 }
