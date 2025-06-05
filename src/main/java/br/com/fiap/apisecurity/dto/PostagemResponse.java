@@ -4,12 +4,16 @@ import br.com.fiap.apisecurity.dto.endereco.EnderecoResponse;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.time.LocalDateTime;
-import java.time.ZoneId;
 
 public class PostagemResponse {
 
     private Integer id;
     private String conteudo;
+    @JsonFormat(
+            shape = JsonFormat.Shape.STRING,
+            pattern = "yyyy-MM-dd HH:mm:ss",
+            timezone = "America/Sao_Paulo"
+    )
     private LocalDateTime dataPublicacao;
     private String nomeUsuario;
     private EnderecoResponse endereco;
