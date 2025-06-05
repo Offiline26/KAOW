@@ -28,8 +28,12 @@ public class PostagemService {
     @Autowired private NivelPerigoRepository nivelRepo;
 
     public PostagemResponse criarPostagem(PostagemRequest request) {
-        var resolucao = resolucaoRepo.findById(request.getIdResolucao()).orElseThrow();
-        var usuario = usuarioRepo.findById(request.getIdUsuario()).orElseThrow();
+        var resolucao = resolucaoRepo.findById(request.getIdResolucao())
+                .orElseThrow(() -> new RuntimeException("Resolução não encontrada"));
+
+        var usuario = usuarioRepo.findById(request.getIdUsuario())
+                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+
         Endereco endereco = new Endereco();
         endereco.setPais("Brasil");
         endereco.setEstado("SP");
@@ -37,8 +41,12 @@ public class PostagemService {
         endereco.setBairro(request.getEndereco().getBairro());
         endereco.setLogradouro(request.getEndereco().getLogradouro());
         enderecoRepo.save(endereco);
-        var desastre = desastreRepo.findById(request.getIdDesastre()).orElseThrow();
-        var nivel = nivelRepo.findById(request.getIdNivelPerigo()).orElseThrow();
+
+        var desastre = desastreRepo.findById(request.getIdDesastre())
+                .orElseThrow(() -> new RuntimeException("Desastre não encontrado"));
+
+        var nivel = nivelRepo.findById(request.getIdNivelPerigo())
+                .orElseThrow(() -> new RuntimeException("Nível de perigo não encontrado"));
 
         var postagem = PostagemMapper.toEntity(request, resolucao, usuario, endereco, desastre, nivel);
         repository.save(postagem);
