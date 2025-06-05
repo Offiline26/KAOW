@@ -25,7 +25,7 @@ public class DesastreService {
                 .collect(Collectors.toList());
     }
 
-    public DesastreDTO findById(Long id) {
+    public DesastreDTO findById(Integer id) {
         return repository.findById(id)
                 .map(DesastreMapper::toDTO)
                 .orElse(null);
@@ -36,7 +36,7 @@ public class DesastreService {
         return DesastreMapper.toDTO(repository.save(entity));
     }
 
-    public void delete(Long id) {
+    public void delete(Integer id) {
         repository.deleteById(id);
     }
 }

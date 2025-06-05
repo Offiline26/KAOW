@@ -23,7 +23,7 @@ public class DesastreController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<DesastreDTO> findById(@PathVariable Long id) {
+    public ResponseEntity<DesastreDTO> findById(@PathVariable Integer id) {
         DesastreDTO dto = service.findById(id);
         return dto != null ? ResponseEntity.ok(dto) : ResponseEntity.notFound().build();
     }
@@ -34,7 +34,7 @@ public class DesastreController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Long id) {
+    public ResponseEntity<Void> delete(@PathVariable Integer id) {
         service.delete(id);
         return ResponseEntity.noContent().build();
     }

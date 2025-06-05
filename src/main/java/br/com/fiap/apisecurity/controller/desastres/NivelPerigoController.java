@@ -23,7 +23,7 @@ public class NivelPerigoController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<NivelPerigoDTO> findById(@PathVariable Long id) {
+    public ResponseEntity<NivelPerigoDTO> findById(@PathVariable Integer id) {
         NivelPerigoDTO dto = service.findById(id);
         return dto != null ? ResponseEntity.ok(dto) : ResponseEntity.notFound().build();
     }
@@ -34,7 +34,7 @@ public class NivelPerigoController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Long id) {
+    public ResponseEntity<Void> delete(@PathVariable Integer id) {
         service.delete(id);
         return ResponseEntity.noContent().build();
     }

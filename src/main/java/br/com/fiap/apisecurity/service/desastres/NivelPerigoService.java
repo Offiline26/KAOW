@@ -25,7 +25,7 @@ public class NivelPerigoService {
                 .collect(Collectors.toList());
     }
 
-    public NivelPerigoDTO findById(Long id) {
+    public NivelPerigoDTO findById(Integer id) {
         return repository.findById(id)
                 .map(NivelPerigoMapper::toDTO)
                 .orElse(null);
@@ -36,7 +36,7 @@ public class NivelPerigoService {
         return NivelPerigoMapper.toDTO(repository.save(entity));
     }
 
-    public void delete(Long id) {
+    public void delete(Integer id) {
         repository.deleteById(id);
     }
 }
