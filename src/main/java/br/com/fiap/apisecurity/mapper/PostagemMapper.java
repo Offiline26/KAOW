@@ -25,7 +25,6 @@ public class PostagemMapper {
                                     Endereco endereco, Desastre desastre, NivelPerigo nivel) {
         Postagem postagem = new Postagem();
         postagem.setConteudo(request.getConteudo());
-        postagem.setDataPublicacao(LocalDateTime.now());
         postagem.setResolucao(resolucao);
         postagem.setUsuario(usuario);
         postagem.setEndereco(endereco);
@@ -38,7 +37,6 @@ public class PostagemMapper {
         PostagemResponse resp = new PostagemResponse();
         resp.setId(postagem.getId());
         resp.setConteudo(postagem.getConteudo());
-        resp.setDataPublicacao(postagem.getDataPublicacao());
         resp.setNomeUsuario(postagem.getUsuario().getNomeUsuario());
         resp.setEndereco(EnderecoMapper.toResponse(postagem.getEndereco()));
         resp.setDesastre(postagem.getDesastre().getTipo());
