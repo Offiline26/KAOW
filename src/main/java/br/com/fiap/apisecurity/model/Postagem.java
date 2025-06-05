@@ -8,6 +8,7 @@ import br.com.fiap.apisecurity.model.usuarios.Usuario;
 import jakarta.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 
 @Entity
 @Table(name = "postagem")
@@ -22,7 +23,7 @@ public class Postagem {
     private String conteudo;
 
     @Column(name = "data_publicacao", nullable = false)
-    private LocalDateTime dataPublicacao;
+    private LocalDateTime dataPublicacao = LocalDateTime.now(ZoneId.of("America/Sao_Paulo"));
 
     @ManyToOne
     @JoinColumn(name = "id_resolucao", nullable = false)
