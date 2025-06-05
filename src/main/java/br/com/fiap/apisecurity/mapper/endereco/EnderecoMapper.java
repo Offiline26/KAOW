@@ -8,9 +8,6 @@ public class EnderecoMapper {
 
     public static Endereco toEntity(EnderecoRequest request) {
         Endereco endereco = new Endereco();
-        endereco.setPais("Brasil");
-        endereco.setEstado("SP");
-        endereco.setCidade("São Paulo");
         endereco.setBairro(request.getBairro());
         endereco.setLogradouro(request.getLogradouro());
         return endereco;
@@ -19,9 +16,9 @@ public class EnderecoMapper {
     public static EnderecoResponse toResponse(Endereco endereco) {
         EnderecoResponse resp = new EnderecoResponse();
         resp.setId(endereco.getId());
-        endereco.setPais("Brasil");
-        endereco.setEstado("SP");
-        endereco.setCidade("São Paulo");
+        resp.setPais(endereco.getPais());
+        resp.setEstado(endereco.getEstado());
+        resp.setCidade(endereco.getCidade());
         resp.setBairro(endereco.getBairro());
         resp.setLogradouro(endereco.getLogradouro());
         return resp;
