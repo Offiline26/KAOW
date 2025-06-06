@@ -9,10 +9,10 @@ import java.util.Optional;
 
 @Repository
 public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
-    @Query("SELECT u FROM Usuario u JOIN FETCH u.postagens p JOIN FETCH p.curtidas WHERE u.id = :id")
-    Optional<Usuario> findByIdWithPostagens(@Param("id") Integer id);
-
     Optional<Usuario> findByNomeUsuario(String nomeUsuario);
+
+    @Query("SELECT u FROM Usuario u LEFT JOIN FETCH u.postagens p LEFT JOIN FETCH p.curtidas WHERE u.id = :id")
+    Optional<Usuario> findByIdWithPostagens(@Param("id") Integer id);
 
 }
 

@@ -63,13 +63,16 @@ public class UsuarioController {
     @GetMapping("/{id}")
     public ResponseEntity<UsuarioPerfilResponse> buscarPerfil(@PathVariable Integer id) {
         Optional<Usuario> usuarioOpt = usuarioRepository.findByIdWithPostagens(id);
+        if (usuarioOpt.isEmpty()) return ResponseEntity.notFound().build();
 
-        if (usuarioOpt.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        }
+        return ResponseEntity.ok(usuarioService.montarPerfilParaFrontend(usuarioOpt.get()));
+    }
 
-        UsuarioPerfilResponse response = usuarioService.montarPerfilParaFrontend(usuarioOpt.get());
-        return ResponseEntity.ok(response);
+    @GetMapping("/debug/{id}")
+    public ResponseEntity<?> debug(@PathVariable Integer id) {
+        Usuario u = usuarioRepository.findById(id).orElseThrow();
+        System.out.println(u.getPostagens().size()); // ⚠️ deve explodir se estiver fora da transação
+        return ResponseEntity.ok("ok");
     }
 
 }

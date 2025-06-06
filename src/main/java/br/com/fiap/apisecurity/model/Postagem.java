@@ -48,7 +48,7 @@ public class Postagem {
     @JoinColumn(name = "id_nivel_perigo", nullable = false)
     private NivelPerigo nivelPerigo;
 
-    @OneToMany(mappedBy = "postagem", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "postagem", fetch = FetchType.LAZY)
     private Set<Curtida> curtidas;
 
     @PrePersist
