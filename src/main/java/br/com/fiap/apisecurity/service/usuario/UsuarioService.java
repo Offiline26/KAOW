@@ -12,6 +12,7 @@ import br.com.fiap.apisecurity.repository.usuario.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Random;
@@ -57,11 +58,15 @@ public class UsuarioService {
         return String.format("#%02X%02X%02X", r, g, b);
     }
 
+    @Transactional
     public UsuarioPerfilResponse montarPerfilParaFrontend(Usuario usuario) {
+        // Força o carregamento da coleção dentro da transação
+        usuario.getPostagens().size();
+
         UsuarioPerfilResponse perfil = new UsuarioPerfilResponse();
         perfil.setNome_usuario(usuario.getNomeUsuario());
         perfil.setCor_perfil(usuario.getCorPerfil());
-        perfil.setIdTipoUsuario(1);
+        perfil.setIdTipoUsuario(1); // fixo como combinado
 
         List<PostagemPerfilResponse> postagens = usuario.getPostagens().stream().map(post -> {
             PostagemPerfilResponse dto = new PostagemPerfilResponse();
