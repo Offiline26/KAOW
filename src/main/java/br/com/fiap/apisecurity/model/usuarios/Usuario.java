@@ -1,6 +1,9 @@
 package br.com.fiap.apisecurity.model.usuarios;
 
+import br.com.fiap.apisecurity.model.Postagem;
 import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 @Table(name = "usuario")
@@ -26,6 +29,39 @@ public class Usuario {
     @ManyToOne
     @JoinColumn(name = "id_tipo_usuario")
     private TipoUsuario tipoUsuario;
+
+    @Column(name = "cor_perfil", length = 7)
+    private String corPerfil;
+
+    @Column(name = "total_curtidas")
+    private Integer totalCurtidas;
+
+    @OneToMany(mappedBy = "usuario")
+    private List<Postagem> postagens;
+
+    public String getCorPerfil() {
+        return corPerfil;
+    }
+
+    public void setCorPerfil(String corPerfil) {
+        this.corPerfil = corPerfil;
+    }
+
+    public Integer getTotalCurtidas() {
+        return totalCurtidas;
+    }
+
+    public void setTotalCurtidas(Integer totalCurtidas) {
+        this.totalCurtidas = totalCurtidas;
+    }
+
+    public List<Postagem> getPostagens() {
+        return postagens;
+    }
+
+    public void setPostagens(List<Postagem> postagens) {
+        this.postagens = postagens;
+    }
 
     public Integer getId() {
         return id;

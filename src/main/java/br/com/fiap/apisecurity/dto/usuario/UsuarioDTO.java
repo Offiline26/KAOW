@@ -1,5 +1,9 @@
 package br.com.fiap.apisecurity.dto.usuario;
 
+import br.com.fiap.apisecurity.model.Postagem;
+
+import java.util.List;
+
 public class UsuarioDTO {
 
     private String nome;

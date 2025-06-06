@@ -1,48 +1,60 @@
 package br.com.fiap.apisecurity.service;
 
-import br.com.fiap.apisecurity.dto.CurtidaRequest;
-import br.com.fiap.apisecurity.dto.CurtidaResponse;
-import br.com.fiap.apisecurity.mapper.CurtidaMapper;
 import br.com.fiap.apisecurity.model.Curtida;
+import br.com.fiap.apisecurity.model.Postagem;
+import br.com.fiap.apisecurity.model.usuarios.Usuario;
 import br.com.fiap.apisecurity.repository.CurtidaRepository;
 import br.com.fiap.apisecurity.repository.PostagemRepository;
 import br.com.fiap.apisecurity.repository.usuario.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.List;
-import java.util.stream.Collectors;
-
 
 @Service
 public class CurtidaService {
 
-    @Autowired private CurtidaRepository curtidaRepo;
-    @Autowired private UsuarioRepository usuarioRepo;
-    @Autowired private PostagemRepository postagemRepo;
+    @Autowired
+    private CurtidaRepository curtidaRepository;
 
-    public CurtidaResponse curtir(CurtidaRequest request) {
-        var usuario = usuarioRepo.findById(request.getIdUsuario()).orElseThrow();
-        var postagem = postagemRepo.findById(request.getIdPostagem()).orElseThrow();
+    @Autowired
+    private PostagemRepository postagemRepository;
 
-        boolean jaCurtiu = curtidaRepo.existsByUsuarioIdAndPostagemId(usuario.getId(), postagem.getId());
-        if (jaCurtiu) throw new RuntimeException("Usuário já curtiu essa postagem.");
+    @Autowired
+    private UsuarioRepository usuarioRepository;
 
-        Curtida curtida = CurtidaMapper.toEntity(request, usuario, postagem);
-        curtidaRepo.save(curtida);
-        return CurtidaMapper.toResponse(curtida);
-    }
+    public String curtirOuDescurtir(Integer idPostagem, Usuario usuario) {
+        Postagem postagem = postagemRepository.findById(idPostagem)
+                .orElseThrow(() -> new RuntimeException("Postagem não encontrada"));
 
-    public List<CurtidaResponse> listarPorPostagem(Integer idPostagem) {
-        return curtidaRepo.findByPostagemId(idPostagem)
-                .stream()
-                .map(CurtidaMapper::toResponse)
-                .toList();
-    }
+        boolean jaCurtiu = curtidaRepository.existsByUsuarioAndPostagem(usuario, postagem);
 
-    public void removerCurtida(Integer idUsuario, Integer idPostagem) {
-        curtidaRepo.deleteByUsuarioIdAndPostagemId(idUsuario, idPostagem);
+        if (jaCurtiu) {
+            // Descurtir
+            Curtida curtida = curtidaRepository.findByUsuarioAndPostagem(usuario, postagem)
+                    .orElseThrow(() -> new RuntimeException("Curtida não encontrada"));
+
+            curtidaRepository.delete(curtida);
+
+            // Atualizar total de curtidas
+            usuario.setTotalCurtidas(usuario.getTotalCurtidas() - 1);
+            usuarioRepository.save(usuario);
+
+            return "Postagem descurtida com sucesso";
+        } else {
+            // Curtir
+            Curtida novaCurtida = new Curtida();
+            novaCurtida.setPostagem(postagem);
+            novaCurtida.setUsuario(usuario);
+            novaCurtida.setDataCurtida(LocalDateTime.now());
+
+            curtidaRepository.save(novaCurtida);
+
+            // Atualizar total de curtidas
+            usuario.setTotalCurtidas(usuario.getTotalCurtidas() + 1);
+            usuarioRepository.save(usuario);
+
+            return "Postagem curtida com sucesso";
+        }
     }
 }

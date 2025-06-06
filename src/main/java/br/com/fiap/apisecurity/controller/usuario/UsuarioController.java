@@ -2,6 +2,7 @@ package br.com.fiap.apisecurity.controller.usuario;
 
 import br.com.fiap.apisecurity.dto.usuario.UpdateUsuarioDTO;
 import br.com.fiap.apisecurity.dto.usuario.UsuarioDTO;
+import br.com.fiap.apisecurity.dto.usuario.UsuarioPerfilResponse;
 import br.com.fiap.apisecurity.model.usuarios.Usuario;
 import br.com.fiap.apisecurity.repository.usuario.UsuarioRepository;
 import br.com.fiap.apisecurity.service.usuario.UsuarioService;
@@ -59,6 +60,17 @@ public class UsuarioController {
         return ResponseEntity.ok("Perfil atualizado com sucesso");
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<UsuarioPerfilResponse> buscarPerfil(@PathVariable Integer id) {
+        Optional<Usuario> usuarioOpt = usuarioRepository.findById(id);
+
+        if (usuarioOpt.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+
+        UsuarioPerfilResponse response = usuarioService.montarPerfilParaFrontend(usuarioOpt.get());
+        return ResponseEntity.ok(response);
+    }
 }
 
 

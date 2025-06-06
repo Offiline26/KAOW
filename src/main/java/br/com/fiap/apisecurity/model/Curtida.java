@@ -11,7 +11,6 @@ import java.time.LocalDateTime;
 @Table(name = "curtida")
 public class Curtida {
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_curtida")

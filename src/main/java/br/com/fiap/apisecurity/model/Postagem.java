@@ -9,6 +9,8 @@ import jakarta.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "postagem")
@@ -44,6 +46,14 @@ public class Postagem {
     @ManyToOne
     @JoinColumn(name = "id_nivel_perigo", nullable = false)
     private NivelPerigo nivelPerigo;
+
+    @OneToMany(mappedBy = "postagem", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Curtida> curtidas = new ArrayList<>();
+
+    @PrePersist
+    protected void onCreate() {
+        this.dataPublicacao = LocalDateTime.now(ZoneId.of("America/Sao_Paulo"));
+    }
 
     public Usuario getUsuario() {
         return usuario;
@@ -109,6 +119,12 @@ public class Postagem {
         this.nivelPerigo = nivelPerigo;
     }
 
+    public List<Curtida> getCurtidas() {
+        return curtidas;
+    }
 
+    public void setCurtidas(List<Curtida> curtidas) {
+        this.curtidas = curtidas;
+    }
 }
 

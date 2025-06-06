@@ -1,7 +1,9 @@
 package br.com.fiap.apisecurity.service.usuario;
 
 
+import br.com.fiap.apisecurity.dto.PostagemPerfilResponse;
 import br.com.fiap.apisecurity.dto.usuario.UsuarioDTO;
+import br.com.fiap.apisecurity.dto.usuario.UsuarioPerfilResponse;
 import br.com.fiap.apisecurity.mapper.usuario.UsuarioMapper;
 import br.com.fiap.apisecurity.model.usuarios.TipoUsuario;
 import br.com.fiap.apisecurity.model.usuarios.Usuario;
@@ -10,6 +12,9 @@ import br.com.fiap.apisecurity.repository.usuario.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Random;
 
 @Service
 public class UsuarioService {
@@ -39,8 +44,47 @@ public class UsuarioService {
 
         Usuario usuario = mapper.toEntity(dto, tipo);
         usuario.setSenha(passwordEncoder.encode(dto.getSenha()));
+        usuario.setCorPerfil(gerarCorHexAleatoria());
 
         return usuarioRepository.save(usuario);
+    }
+
+    private String gerarCorHexAleatoria() {
+        Random random = new Random();
+        int r = random.nextInt(256);
+        int g = random.nextInt(256);
+        int b = random.nextInt(256);
+        return String.format("#%02X%02X%02X", r, g, b);
+    }
+
+    public UsuarioPerfilResponse montarPerfilParaFrontend(Usuario usuario) {
+        UsuarioPerfilResponse perfil = new UsuarioPerfilResponse();
+        perfil.setNome_usuario(usuario.getNomeUsuario());
+        perfil.setCor_perfil(usuario.getCorPerfil());
+        perfil.setIdTipoUsuario(1);
+
+        List<PostagemPerfilResponse> postagens = usuario.getPostagens().stream().map(post -> {
+            PostagemPerfilResponse dto = new PostagemPerfilResponse();
+            dto.setId_postagem(post.getId());
+            dto.setConteudo(post.getConteudo());
+            dto.setIdResolucao(post.getResolucao().getId());
+            dto.setStatusResolucao(post.getResolucao().getStatus());
+            dto.setDataPublicacao(post.getDataPublicacao());
+
+            PostagemPerfilResponse.EnderecoDTO enderecoDTO = new PostagemPerfilResponse.EnderecoDTO();
+            enderecoDTO.setBairro(post.getEndereco().getBairro());
+            enderecoDTO.setLogradouro(post.getEndereco().getLogradouro());
+            dto.setEndereco(enderecoDTO);
+
+            dto.setCurtidas(post.getCurtidas().stream()
+                    .map(c -> c.getUsuario().getId())
+                    .toList());
+
+            return dto;
+        }).toList();
+
+        perfil.setPostagens(postagens);
+        return perfil;
     }
 }
 
