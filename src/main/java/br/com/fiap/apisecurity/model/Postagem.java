@@ -6,11 +6,12 @@ import br.com.fiap.apisecurity.model.desastres.Resolucao;
 import br.com.fiap.apisecurity.model.endereco.Endereco;
 import br.com.fiap.apisecurity.model.usuarios.Usuario;
 import jakarta.persistence.*;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "postagem")
@@ -48,7 +49,7 @@ public class Postagem {
     private NivelPerigo nivelPerigo;
 
     @OneToMany(mappedBy = "postagem", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Curtida> curtidas = new ArrayList<>();
+    private Set<Curtida> curtidas;
 
     @PrePersist
     protected void onCreate() {
@@ -119,11 +120,11 @@ public class Postagem {
         this.nivelPerigo = nivelPerigo;
     }
 
-    public List<Curtida> getCurtidas() {
+    public Set<Curtida> getCurtidas() {
         return curtidas;
     }
 
-    public void setCurtidas(List<Curtida> curtidas) {
+    public void setCurtidas(Set<Curtida> curtidas) {
         this.curtidas = curtidas;
     }
 }

@@ -4,6 +4,7 @@ import br.com.fiap.apisecurity.model.Postagem;
 import jakarta.persistence.*;
 
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "usuario")
@@ -37,7 +38,7 @@ public class Usuario {
     private Integer totalCurtidas;
 
     @OneToMany(mappedBy = "usuario")
-    private List<Postagem> postagens;
+    private Set<Postagem> postagens;
 
     public String getCorPerfil() {
         return corPerfil;
@@ -55,11 +56,11 @@ public class Usuario {
         this.totalCurtidas = totalCurtidas;
     }
 
-    public List<Postagem> getPostagens() {
+    public Set<Postagem> getPostagens() {
         return postagens;
     }
 
-    public void setPostagens(List<Postagem> postagens) {
+    public void setPostagens(Set<Postagem> postagens) {
         this.postagens = postagens;
     }
 

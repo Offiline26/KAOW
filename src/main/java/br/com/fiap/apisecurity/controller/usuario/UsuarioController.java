@@ -62,7 +62,7 @@ public class UsuarioController {
 
     @GetMapping("/{id}")
     public ResponseEntity<UsuarioPerfilResponse> buscarPerfil(@PathVariable Integer id) {
-        Optional<Usuario> usuarioOpt = usuarioRepository.findById(id);
+        Optional<Usuario> usuarioOpt = usuarioRepository.findByIdWithPostagens(id);
 
         if (usuarioOpt.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
@@ -71,6 +71,7 @@ public class UsuarioController {
         UsuarioPerfilResponse response = usuarioService.montarPerfilParaFrontend(usuarioOpt.get());
         return ResponseEntity.ok(response);
     }
+
 }
 
 

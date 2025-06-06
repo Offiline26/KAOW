@@ -60,13 +60,13 @@ public class UsuarioService {
 
     @Transactional
     public UsuarioPerfilResponse montarPerfilParaFrontend(Usuario usuario) {
-        // Força o carregamento da coleção dentro da transação
-        usuario.getPostagens().size();
+        // Força carregamento das postagens e curtidas enquanto a sessão estiver ativa
+        usuario.getPostagens().forEach(postagem -> postagem.getCurtidas().size());
 
         UsuarioPerfilResponse perfil = new UsuarioPerfilResponse();
         perfil.setNome_usuario(usuario.getNomeUsuario());
         perfil.setCor_perfil(usuario.getCorPerfil());
-        perfil.setIdTipoUsuario(1); // fixo como combinado
+        perfil.setIdTipoUsuario(usuario.getTipoUsuario().getId());
 
         List<PostagemPerfilResponse> postagens = usuario.getPostagens().stream().map(post -> {
             PostagemPerfilResponse dto = new PostagemPerfilResponse();
