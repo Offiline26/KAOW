@@ -41,6 +41,7 @@ public class PostagemMapper {
         resp.setDataPublicacao(postagem.getDataPublicacao());
         // Verifica se usuario é nulo para evitar NullPointerException
         resp.setNomeUsuario(postagem.getUsuario() != null ? postagem.getUsuario().getNomeUsuario() : "Desconhecido");
+        resp.setIdUsuario(postagem.getUsuario().getId());
 
         // Verifica se o endereco está presente e mapeia com o endereço correto
         resp.setEndereco(postagem.getEndereco() != null ? EnderecoMapper.toResponse(postagem.getEndereco()) : null);

@@ -23,6 +23,15 @@ public class PostagemResponse {
     private String statusResolucao;
     private List<Integer> curtidas;
     private List<ComentarioResponse> comentarios;
+    private Integer idUsuario;
+
+    public Integer getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(Integer idUsuario) {
+        this.idUsuario = idUsuario;
+    }
 
     public List<ComentarioResponse> getComentarios() {
         return comentarios;

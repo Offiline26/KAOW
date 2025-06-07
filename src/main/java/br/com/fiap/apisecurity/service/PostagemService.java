@@ -87,6 +87,7 @@ public class PostagemService {
         // Adicionando o usuário
         if (postagem.getUsuario() != null) {
             response.setNomeUsuario(postagem.getUsuario().getNomeUsuario()); // Nome do usuário
+            response.setIdUsuario(postagem.getUsuario().getId());
             // Se você quiser adicionar mais informações sobre o usuário, como "corPerfil" ou "idTipoUsuario", pode adicionar também
         }
 
