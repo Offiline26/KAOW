@@ -48,8 +48,19 @@ public class Postagem {
     @JoinColumn(name = "id_nivel_perigo", nullable = false)
     private NivelPerigo nivelPerigo;
 
-    @OneToMany(mappedBy = "postagem", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "postagem", fetch = FetchType.EAGER)
     private Set<Curtida> curtidas;
+
+    @OneToMany(mappedBy = "postagem", fetch = FetchType.EAGER)
+    private Set<Comentario> comentarios;  // Relacionamento com comentários
+
+    public Set<Comentario> getComentarios() {
+        return comentarios;
+    }
+
+    public void setComentarios(Set<Comentario> comentarios) {
+        this.comentarios = comentarios;
+    }
 
     @PrePersist
     protected void onCreate() {

@@ -4,6 +4,7 @@ import br.com.fiap.apisecurity.dto.endereco.EnderecoResponse;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class PostagemResponse {
 
@@ -20,6 +21,24 @@ public class PostagemResponse {
     private String desastre;
     private String nivelPerigo;
     private String statusResolucao;
+    private List<Integer> curtidas;
+    private List<ComentarioResponse> comentarios;
+
+    public List<ComentarioResponse> getComentarios() {
+        return comentarios;
+    }
+
+    public void setComentarios(List<ComentarioResponse> comentarios) {
+        this.comentarios = comentarios;
+    }
+
+    public List<Integer> getCurtidas() {
+        return curtidas;
+    }
+
+    public void setCurtidas(List<Integer> curtidas) {
+        this.curtidas = curtidas;
+    }
 
     public Integer getId() {
         return id;

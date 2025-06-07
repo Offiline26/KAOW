@@ -2,11 +2,22 @@ package br.com.fiap.apisecurity.repository;
 
 import br.com.fiap.apisecurity.model.Postagem;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface PostagemRepository extends JpaRepository<Postagem, Integer> {
-
+    @Query("SELECT p FROM Postagem p " +
+        "LEFT JOIN FETCH p.curtidas c " +
+        "LEFT JOIN FETCH p.comentarios co " +
+        "LEFT JOIN FETCH p.endereco e " +
+        "LEFT JOIN FETCH p.resolucao r " +
+        "LEFT JOIN FETCH p.desastre d " +
+        "LEFT JOIN FETCH p.nivelPerigo np " +
+        "WHERE p.id = :id")
+    Optional<Postagem> findByIdWithDetails(@Param("id") Integer id);
 }
