@@ -37,7 +37,7 @@ public class PostagemController {
     @GetMapping("/{id}")
     public ResponseEntity<PostagemResponse> getPostDetalhes(@PathVariable Integer id) {
         Optional<Postagem> postagemOpt = repository.findByIdWithDetails(id);
-        return postagemOpt.map(postagem -> ResponseEntity.ok(postagemService.montarDetalhesPostagem(postagem)))
+        return postagemOpt.map(postagem -> ResponseEntity.ok(postagemService.montarDetalhesPostagem(id)))
                 .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).build());
     }
 }

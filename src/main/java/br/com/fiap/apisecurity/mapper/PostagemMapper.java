@@ -39,11 +39,20 @@ public class PostagemMapper {
         resp.setId(postagem.getId());
         resp.setConteudo(postagem.getConteudo());
         resp.setDataPublicacao(postagem.getDataPublicacao());
-        resp.setNomeUsuario(postagem.getUsuario().getNomeUsuario());
-        resp.setEndereco(EnderecoMapper.toResponse(postagem.getEndereco()));
-        resp.setDesastre(postagem.getDesastre().getTipo());
-        resp.setNivelPerigo(postagem.getNivelPerigo().getNivel());
-        resp.setStatusResolucao(postagem.getResolucao().getStatus());
+        // Verifica se usuario é nulo para evitar NullPointerException
+        resp.setNomeUsuario(postagem.getUsuario() != null ? postagem.getUsuario().getNomeUsuario() : "Desconhecido");
+
+        // Verifica se o endereco está presente e mapeia com o endereço correto
+        resp.setEndereco(postagem.getEndereco() != null ? EnderecoMapper.toResponse(postagem.getEndereco()) : null);
+
+        // Verifica se desastre está presente
+        resp.setDesastre(postagem.getDesastre() != null ? postagem.getDesastre().getTipo() : "Desastre desconhecido");
+
+        // Verifica se o nivelPerigo está presente
+        resp.setNivelPerigo(postagem.getNivelPerigo() != null ? postagem.getNivelPerigo().getNivel() : "Nível desconhecido");
+
+        // Verifica se a resolução está presente
+        resp.setStatusResolucao(postagem.getResolucao() != null ? postagem.getResolucao().getStatus() : "Status não disponível");
         return resp;
     }
 }

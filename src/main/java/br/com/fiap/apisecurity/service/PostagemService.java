@@ -64,23 +64,19 @@ public class PostagemService {
     }
 
     @Transactional
-    public PostagemResponse montarDetalhesPostagem(Postagem postagem)
-    {
-        // Força carregar curtidas e comentários
-        postagem.getCurtidas().size();  // Forçar acesso a curtidas
-        postagem.getComentarios().size();  // Forçar acesso aos comentários
-        postagem.getDesastre();  // Forçar carregamento do desastre
-        postagem.getNivelPerigo();  // Forçar carregamento do nível de perigo
+    public PostagemResponse montarDetalhesPostagem(Integer id) {
+        Postagem postagem = repository.findByIdWithDetails(id)
+                .orElseThrow(() -> new RuntimeException("Postagem não encontrada"));
 
-        // Criando DTO de resposta
         PostagemResponse response = new PostagemResponse();
         response.setId(postagem.getId());
         response.setConteudo(postagem.getConteudo());
         response.setStatusResolucao(postagem.getResolucao().getStatus());
         response.setDataPublicacao(postagem.getDataPublicacao());
 
-        // Monta o endereço usando EnderecoResponse
+        // Montando o endereço
         EnderecoResponse enderecoResponse = new EnderecoResponse();
+        enderecoResponse.setId(postagem.getEndereco().getId());
         enderecoResponse.setBairro(postagem.getEndereco().getBairro());
         enderecoResponse.setLogradouro(postagem.getEndereco().getLogradouro());
         enderecoResponse.setCidade(postagem.getEndereco().getCidade());
@@ -88,21 +84,37 @@ public class PostagemService {
         enderecoResponse.setPais(postagem.getEndereco().getPais());
         response.setEndereco(enderecoResponse);
 
-        // Adiciona as curtidas (apenas IDs dos usuários)
+        // Adicionando o usuário
+        if (postagem.getUsuario() != null) {
+            response.setNomeUsuario(postagem.getUsuario().getNomeUsuario()); // Nome do usuário
+            // Se você quiser adicionar mais informações sobre o usuário, como "corPerfil" ou "idTipoUsuario", pode adicionar também
+        }
+
+        // Curtidas
         response.setCurtidas(postagem.getCurtidas().stream()
                 .map(c -> c.getUsuario().getId())
                 .collect(Collectors.toList()));
 
-        // Adiciona os comentários
+        // Comentários
         response.setComentarios(postagem.getComentarios().stream()
                 .map(c -> {
                     ComentarioResponse comentarioDTO = new ComentarioResponse();
                     comentarioDTO.setId(c.getId());
-                    comentarioDTO.setTexto(c.getTexto()); // Mudança para `setTexto` alinhado ao `ComentarioResponse`
+                    comentarioDTO.setTexto(c.getTexto());
                     comentarioDTO.setDataComentario(c.getDataComentario());
                     return comentarioDTO;
                 })
                 .collect(Collectors.toList()));
+
+        // Desastre
+        if (postagem.getDesastre() != null) {
+            response.setDesastre(postagem.getDesastre().getTipo());
+        }
+
+        // Nivel Perigo
+        if (postagem.getNivelPerigo() != null) {
+            response.setNivelPerigo(postagem.getNivelPerigo().getNivel());
+        }
 
         return response;
     }
