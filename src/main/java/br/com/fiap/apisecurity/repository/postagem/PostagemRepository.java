@@ -1,6 +1,8 @@
 package br.com.fiap.apisecurity.repository.postagem;
 
 import br.com.fiap.apisecurity.model.postagem.Postagem;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -20,4 +22,6 @@ public interface PostagemRepository extends JpaRepository<Postagem, Integer> {
             "LEFT JOIN FETCH p.nivelPerigo np " +
             "WHERE p.id = :id")
     Optional<Postagem> findByIdWithDetails(@Param("id") Integer id);
+
+    Page<Postagem> findAll(Pageable pageable);
 }

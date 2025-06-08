@@ -6,6 +6,9 @@ import br.com.fiap.apisecurity.model.postagem.Postagem;
 import br.com.fiap.apisecurity.repository.postagem.PostagemRepository;
 import br.com.fiap.apisecurity.service.postagem.PostagemService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -27,8 +30,11 @@ public class PostagemController {
     }
 
     @GetMapping
-    public ResponseEntity<List<PostagemResponse>> listar() {
-        return ResponseEntity.ok(service.listarPostagens());
+    public ResponseEntity<Page<PostagemResponse>> listar(Pageable pageable) {
+        Pageable pageRequest = PageRequest.of(
+                pageable.getPageNumber(), 25, pageable.getSort()
+        );
+        return ResponseEntity.ok(postagemService.listarPostagens(pageRequest));
     }
 
     @GetMapping("/{id}")

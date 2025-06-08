@@ -16,6 +16,8 @@ import br.com.fiap.apisecurity.repository.desastres.ResolucaoRepository;
 import br.com.fiap.apisecurity.repository.endereco.EnderecoRepository;
 import br.com.fiap.apisecurity.repository.usuario.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -60,11 +62,9 @@ public class PostagemService {
         return PostagemMapper.toResponse(postagem);
     }
 
-    public List<PostagemResponse> listarPostagens() {
-        return repository.findAll()
-                .stream()
-                .map(PostagemMapper::toResponse)
-                .toList();
+    public Page<PostagemResponse> listarPostagens(Pageable pageable) {
+        return repository.findAll(pageable)
+                .map(PostagemMapper::toResponse);
     }
 
     @Transactional
