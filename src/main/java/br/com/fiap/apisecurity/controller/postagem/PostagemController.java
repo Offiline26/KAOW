@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -30,7 +32,7 @@ public class PostagemController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<PostagemResponse>> listar(Pageable pageable) {
+    public ResponseEntity<Page<PostagemResponse>> listar(  @PageableDefault(size = 10, sort = "dataComentario", direction = Sort.Direction.DESC) Pageable pageable) {
         Pageable pageRequest = PageRequest.of(
                 pageable.getPageNumber(), 25, pageable.getSort()
         );
