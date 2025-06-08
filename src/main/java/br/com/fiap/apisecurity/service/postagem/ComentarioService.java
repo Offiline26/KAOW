@@ -8,6 +8,8 @@ import br.com.fiap.apisecurity.repository.postagem.ComentarioRepository;
 import br.com.fiap.apisecurity.repository.postagem.PostagemRepository;
 import br.com.fiap.apisecurity.repository.usuario.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -28,10 +30,8 @@ public class ComentarioService {
         return ComentarioMapper.toResponse(comentario);
     }
 
-    public List<ComentarioResponse> listarPorPostagem(Integer idPostagem) {
-        return comentarioRepo.findByPostagemId(idPostagem)
-                .stream()
-                .map(ComentarioMapper::toResponse)
-                .toList();
+    public Page<ComentarioResponse> listarPorPostagem(Integer idPostagem, Pageable pageable) {
+        return comentarioRepo.findByPostagemId(idPostagem, pageable)
+                .map(ComentarioMapper::toResponse);
     }
 }
