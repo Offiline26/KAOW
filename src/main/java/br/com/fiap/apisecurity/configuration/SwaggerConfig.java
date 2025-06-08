@@ -36,9 +36,9 @@ public class SwaggerConfig {
                                 .name("Authorization")
                                 .type(SecurityScheme.Type.HTTP)
                                 .scheme("bearer")
-                                .bearerFormat("JWT")))
-                .servers(List.of(
-                        new Server().url("https://kaow.onrender.com").description("Servidor do Render")
-                ));
+                                .bearerFormat("JWT")));
+//                .servers(List.of(
+//                        new Server().url("https://kaow.onrender.com").description("Servidor do Render")
+//                ));
     }
 }

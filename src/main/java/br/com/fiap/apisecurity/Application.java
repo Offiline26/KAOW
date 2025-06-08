@@ -11,6 +11,6 @@ public class Application {
 //Classe em que a aplicação funciona.
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
+        System.out.println("✅ Aplicação KAOW iniciada.");
     }
-
 }
