@@ -7,6 +7,8 @@ import br.com.fiap.apisecurity.dto.endereco.EnderecoResponse;
 import br.com.fiap.apisecurity.mapper.postagem.PostagemMapper;
 import br.com.fiap.apisecurity.model.postagem.Postagem;
 import br.com.fiap.apisecurity.model.endereco.Endereco;
+import br.com.fiap.apisecurity.repository.postagem.ComentarioRepository;
+import br.com.fiap.apisecurity.repository.postagem.CurtidaRepository;
 import br.com.fiap.apisecurity.repository.postagem.PostagemRepository;
 import br.com.fiap.apisecurity.repository.desastres.DesastreRepository;
 import br.com.fiap.apisecurity.repository.desastres.NivelPerigoRepository;
@@ -29,6 +31,8 @@ public class PostagemService {
     @Autowired private EnderecoRepository enderecoRepo;
     @Autowired private DesastreRepository desastreRepo;
     @Autowired private NivelPerigoRepository nivelRepo;
+    @Autowired private CurtidaRepository curtidaRepo;
+    @Autowired private ComentarioRepository comentarioRepo;
 
     public PostagemResponse criarPostagem(PostagemRequest request) {
         var resolucao = resolucaoRepo.findById(request.getIdResolucao())
@@ -123,10 +127,17 @@ public class PostagemService {
     }
 
     @Transactional
-    public void deletarPostagem(Integer id) {
-        Postagem postagem = repository.findById(id)
+    public void deletarPostagem(Integer idPostagem) {
+        Postagem postagem = repository.findById(idPostagem)
                 .orElseThrow(() -> new RuntimeException("Postagem não encontrada"));
 
+        // Deleta todas as curtidas relacionadas
+        curtidaRepo.deleteByPostagem(postagem);
+
+        // Se tiver comentários, deletar também
+        comentarioRepo.deleteByPostagem(postagem);
+
+        // Agora pode deletar a postagem com segurança
         repository.delete(postagem);
     }
 }
