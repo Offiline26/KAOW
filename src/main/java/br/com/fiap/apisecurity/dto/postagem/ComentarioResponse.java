@@ -21,6 +21,15 @@ public class ComentarioResponse {
     @NotNull
     private Integer idPostagem;
 
+    private String corUsuario;
+
+    public String getCorUsuario() {
+        return corUsuario;
+    }
+
+    public void setCorUsuario(String corUsuario) {
+        this.corUsuario = corUsuario;
+    }
 
     public Integer getIdPostagem() {
         return idPostagem;

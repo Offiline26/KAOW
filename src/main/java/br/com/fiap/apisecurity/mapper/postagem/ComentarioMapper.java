@@ -27,6 +27,7 @@ public class ComentarioMapper {
         resp.setTexto(comentario.getTexto());
         resp.setDataComentario(comentario.getDataComentario());
         resp.setNomeUsuario(comentario.getUsuario().getNomeUsuario());
+        resp.setCorUsuario(comentario.getUsuario().getCorPerfil());
         resp.setIdPostagem(comentario.getPostagem().getId());
         return resp;
     }
