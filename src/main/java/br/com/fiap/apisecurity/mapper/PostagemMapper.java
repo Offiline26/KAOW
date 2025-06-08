@@ -54,6 +54,7 @@ public class PostagemMapper {
 
         // Verifica se a resolução está presente
         resp.setStatusResolucao(postagem.getResolucao() != null ? postagem.getResolucao().getStatus() : "Status não disponível");
+
         return resp;
     }
 }

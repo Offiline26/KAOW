@@ -3,7 +3,6 @@ package br.com.fiap.apisecurity.model.usuarios;
 import br.com.fiap.apisecurity.model.Postagem;
 import jakarta.persistence.*;
 
-import java.util.List;
 import java.util.Set;
 
 @Entity

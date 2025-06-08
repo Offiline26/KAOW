@@ -46,6 +46,7 @@ public class UsuarioService {
         Usuario usuario = mapper.toEntity(dto, tipo);
         usuario.setSenha(passwordEncoder.encode(dto.getSenha()));
         usuario.setCorPerfil(gerarCorHexAleatoria());
+        usuario.setTotalCurtidas(0);
 
         return usuarioRepository.save(usuario);
     }

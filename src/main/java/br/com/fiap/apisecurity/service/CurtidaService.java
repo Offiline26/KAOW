@@ -37,6 +37,11 @@ public class CurtidaService {
             curtidaRepository.delete(curtida);
 
             // Atualizar total de curtidas
+            if (usuario.getTotalCurtidas() == null) {
+                usuario.setTotalCurtidas(0);  // Inicializa o valor caso seja nulo
+            }
+
+            // Atualizar total de curtidas
             usuario.setTotalCurtidas(usuario.getTotalCurtidas() - 1);
             usuarioRepository.save(usuario);
 
@@ -49,6 +54,11 @@ public class CurtidaService {
             novaCurtida.setDataCurtida(LocalDateTime.now());
 
             curtidaRepository.save(novaCurtida);
+
+            // Atualizar total de curtidas
+            if (usuario.getTotalCurtidas() == null) {
+                usuario.setTotalCurtidas(0);  // Inicializa o valor caso seja nulo
+            }
 
             // Atualizar total de curtidas
             usuario.setTotalCurtidas(usuario.getTotalCurtidas() + 1);

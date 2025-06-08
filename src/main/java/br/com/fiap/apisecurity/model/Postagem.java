@@ -4,6 +4,7 @@ import br.com.fiap.apisecurity.model.desastres.Desastre;
 import br.com.fiap.apisecurity.model.desastres.NivelPerigo;
 import br.com.fiap.apisecurity.model.desastres.Resolucao;
 import br.com.fiap.apisecurity.model.endereco.Endereco;
+import br.com.fiap.apisecurity.model.usuarios.TipoUsuario;
 import br.com.fiap.apisecurity.model.usuarios.Usuario;
 import jakarta.persistence.*;
 
