@@ -45,7 +45,9 @@ public class CurtidaService {
             usuario.setTotalCurtidas(usuario.getTotalCurtidas() - 1);
             usuarioRepository.save(usuario);
 
-            return "Postagem descurtida com sucesso";
+            usuario.setId(usuario.getId());
+
+            return "Postagem descurtida com sucesso " + usuario.getId();
         } else {
             // Curtir
             Curtida novaCurtida = new Curtida();
@@ -64,7 +66,9 @@ public class CurtidaService {
             usuario.setTotalCurtidas(usuario.getTotalCurtidas() + 1);
             usuarioRepository.save(usuario);
 
-            return "Postagem curtida com sucesso";
+            usuario.setId(usuario.getId());
+
+            return "Postagem curtida com sucesso " + usuario.getId();
         }
     }
 }
