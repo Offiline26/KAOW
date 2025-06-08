@@ -1,9 +1,9 @@
-package br.com.fiap.apisecurity.mapper;
+package br.com.fiap.apisecurity.mapper.postagem;
 
-import br.com.fiap.apisecurity.dto.CurtidaRequest;
-import br.com.fiap.apisecurity.dto.CurtidaResponse;
-import br.com.fiap.apisecurity.model.Curtida;
-import br.com.fiap.apisecurity.model.Postagem;
+import br.com.fiap.apisecurity.dto.postagem.CurtidaRequest;
+import br.com.fiap.apisecurity.dto.postagem.CurtidaResponse;
+import br.com.fiap.apisecurity.model.postagem.Curtida;
+import br.com.fiap.apisecurity.model.postagem.Postagem;
 import br.com.fiap.apisecurity.model.usuarios.Usuario;
 import org.springframework.stereotype.Component;
 

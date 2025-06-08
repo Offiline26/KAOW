@@ -1,12 +1,24 @@
-package br.com.fiap.apisecurity.dto;
+package br.com.fiap.apisecurity.dto.postagem;
+
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDateTime;
 
 public class ComentarioResponse {
+    @NotNull
     private Integer id;
+
+    @NotBlank
     private String texto;
+
+    @NotNull
     private LocalDateTime dataComentario;
+
+    @NotBlank
     private String nomeUsuario;
+
+    @NotNull
     private Integer idPostagem;
 
 

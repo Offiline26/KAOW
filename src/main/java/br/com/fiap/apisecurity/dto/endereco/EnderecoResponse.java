@@ -1,12 +1,26 @@
 package br.com.fiap.apisecurity.dto.endereco;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
 public class EnderecoResponse {
 
+    @NotNull(message = "O ID do endereço é obrigatório")
     private Integer id;
+
+    @NotBlank(message = "O país é obrigatório")
     private String pais;
+
+    @NotBlank(message = "O estado é obrigatório")
     private String estado;
+
+    @NotBlank(message = "A cidade é obrigatória")
     private String cidade;
+
+    @NotBlank(message = "O bairro é obrigatório")
     private String bairro;
+
+    @NotBlank(message = "O logradouro é obrigatório")
     private String logradouro;
 
     public Integer getId() {

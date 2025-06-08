@@ -1,6 +1,6 @@
-package br.com.fiap.apisecurity.repository;
+package br.com.fiap.apisecurity.repository.postagem;
 
-import br.com.fiap.apisecurity.model.Comentario;
+import br.com.fiap.apisecurity.model.postagem.Comentario;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

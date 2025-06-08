@@ -1,10 +1,18 @@
 package br.com.fiap.apisecurity.dto.desastres;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
 import java.time.LocalDate;
 
 public class ResolucaoDTO {
+    @NotNull(message = "O ID é obrigatório")
     private Integer id;
+
+    @NotNull(message = "A data de resolução é obrigatória")
     private LocalDate dataResolucao;
+
+    @NotBlank(message = "O status é obrigatório")
     private String status;
 
     public Integer getId() {

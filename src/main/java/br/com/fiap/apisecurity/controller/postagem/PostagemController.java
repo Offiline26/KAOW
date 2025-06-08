@@ -1,16 +1,13 @@
-package br.com.fiap.apisecurity.controller;
+package br.com.fiap.apisecurity.controller.postagem;
 
-import br.com.fiap.apisecurity.dto.PostagemRequest;
-import br.com.fiap.apisecurity.dto.PostagemResponse;
-import br.com.fiap.apisecurity.model.Postagem;
-import br.com.fiap.apisecurity.repository.PostagemRepository;
-import br.com.fiap.apisecurity.service.PostagemService;
-import jakarta.validation.Valid;
+import br.com.fiap.apisecurity.dto.postagem.PostagemRequest;
+import br.com.fiap.apisecurity.dto.postagem.PostagemResponse;
+import br.com.fiap.apisecurity.model.postagem.Postagem;
+import br.com.fiap.apisecurity.repository.postagem.PostagemRepository;
+import br.com.fiap.apisecurity.service.postagem.PostagemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

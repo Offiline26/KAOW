@@ -1,7 +1,14 @@
 package br.com.fiap.apisecurity.dto.desastres;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
 public class NivelPerigoDTO {
+
+    @NotNull(message = "O ID é obrigatório")
     private Integer id;
+
+    @NotBlank(message = "O nível de perigo é obrigatório")
     private String nivelPerigo;
 
     public Integer getId() {

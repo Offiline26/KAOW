@@ -1,9 +1,9 @@
-package br.com.fiap.apisecurity.mapper;
+package br.com.fiap.apisecurity.mapper.postagem;
 
-import br.com.fiap.apisecurity.dto.ComentarioRequest;
-import br.com.fiap.apisecurity.dto.ComentarioResponse;
-import br.com.fiap.apisecurity.model.Comentario;
-import br.com.fiap.apisecurity.model.Postagem;
+import br.com.fiap.apisecurity.dto.postagem.ComentarioRequest;
+import br.com.fiap.apisecurity.dto.postagem.ComentarioResponse;
+import br.com.fiap.apisecurity.model.postagem.Comentario;
+import br.com.fiap.apisecurity.model.postagem.Postagem;
 import br.com.fiap.apisecurity.model.usuarios.Usuario;
 import org.springframework.stereotype.Component;
 

@@ -1,9 +1,17 @@
-package br.com.fiap.apisecurity.dto;
+package br.com.fiap.apisecurity.dto.postagem;
+
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 public class ComentarioRequest {
 
+    @NotBlank(message = "O texto do comentário é obrigatório.")
     private String texto;
+
+    @NotNull(message = "O ID do usuário é obrigatório.")
     private Integer idUsuario;
+
+    @NotNull(message = "O ID da postagem é obrigatório.")
     private Integer idPostagem;
 
     public String getTexto() {

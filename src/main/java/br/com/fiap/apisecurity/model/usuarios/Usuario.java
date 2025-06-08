@@ -1,6 +1,6 @@
 package br.com.fiap.apisecurity.model.usuarios;
 
-import br.com.fiap.apisecurity.model.Postagem;
+import br.com.fiap.apisecurity.model.postagem.Postagem;
 import jakarta.persistence.*;
 
 import java.util.Set;

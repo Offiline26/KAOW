@@ -1,29 +1,55 @@
-package br.com.fiap.apisecurity.dto;
+package br.com.fiap.apisecurity.dto.postagem;
 
 import br.com.fiap.apisecurity.dto.endereco.EnderecoResponse;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 public class PostagemResponse {
 
+    @NotNull
     private Integer id;
+
+    @NotBlank
     private String conteudo;
+
+    @NotNull
     @JsonFormat(
             shape = JsonFormat.Shape.STRING,
             pattern = "yyyy-MM-dd HH:mm:ss",
             timezone = "America/Sao_Paulo"
     )
     private LocalDateTime dataPublicacao;
+
+    @NotBlank
     private String nomeUsuario;
+
+    @NotNull
     private EnderecoResponse endereco;
+
+    @NotBlank
     private String desastre;
+
+    @NotBlank
     private String nivelPerigo;
+
+    @NotBlank
     private String statusResolucao;
+
+    @NotNull
+    @NotEmpty
     private List<Integer> curtidas;
+
+    @NotNull
     private List<ComentarioResponse> comentarios;
+
+    @NotNull
     private Integer idUsuario;
+
 
     public Integer getIdUsuario() {
         return idUsuario;

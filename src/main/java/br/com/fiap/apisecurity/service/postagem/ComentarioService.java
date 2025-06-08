@@ -1,25 +1,16 @@
-package br.com.fiap.apisecurity.service;
+package br.com.fiap.apisecurity.service.postagem;
 
-import br.com.fiap.apisecurity.dto.ComentarioRequest;
-import br.com.fiap.apisecurity.dto.ComentarioResponse;
-import br.com.fiap.apisecurity.mapper.ComentarioMapper;
-import br.com.fiap.apisecurity.model.Comentario;
-import br.com.fiap.apisecurity.model.Postagem;
-import br.com.fiap.apisecurity.model.usuarios.Usuario;
-import br.com.fiap.apisecurity.repository.ComentarioRepository;
-import br.com.fiap.apisecurity.repository.PostagemRepository;
+import br.com.fiap.apisecurity.dto.postagem.ComentarioRequest;
+import br.com.fiap.apisecurity.dto.postagem.ComentarioResponse;
+import br.com.fiap.apisecurity.mapper.postagem.ComentarioMapper;
+import br.com.fiap.apisecurity.model.postagem.Comentario;
+import br.com.fiap.apisecurity.repository.postagem.ComentarioRepository;
+import br.com.fiap.apisecurity.repository.postagem.PostagemRepository;
 import br.com.fiap.apisecurity.repository.usuario.UsuarioRepository;
-import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
-
-import java.time.LocalDate;
 
 @Service
 public class ComentarioService {

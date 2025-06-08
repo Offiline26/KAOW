@@ -1,7 +1,7 @@
 package br.com.fiap.apisecurity.service.usuario;
 
 
-import br.com.fiap.apisecurity.dto.PostagemPerfilResponse;
+import br.com.fiap.apisecurity.dto.postagem.PostagemPerfilResponse;
 import br.com.fiap.apisecurity.dto.usuario.UsuarioDTO;
 import br.com.fiap.apisecurity.dto.usuario.UsuarioPerfilResponse;
 import br.com.fiap.apisecurity.mapper.usuario.UsuarioMapper;

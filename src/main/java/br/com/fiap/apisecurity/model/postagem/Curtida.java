@@ -1,10 +1,8 @@
-package br.com.fiap.apisecurity.model;
+package br.com.fiap.apisecurity.model.postagem;
 
 import br.com.fiap.apisecurity.model.usuarios.Usuario;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity

@@ -1,17 +1,27 @@
-package br.com.fiap.apisecurity.dto;
+package br.com.fiap.apisecurity.dto.postagem;
 
 import br.com.fiap.apisecurity.dto.endereco.EnderecoRequest;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 
 public class PostagemRequest {
 
+    @NotBlank(message = "O conteúdo não pode estar em branco")
     private String conteudo;
+
+    @NotNull(message = "O ID do usuário é obrigatório")
     private Integer idUsuario;
+
+    @NotNull(message = "O ID da resolução é obrigatório")
     private Integer idResolucao;
+
+    @NotNull(message = "O ID do desastre é obrigatório")
     private Integer idDesastre;
+
+    @NotNull(message = "O ID do nível de perigo é obrigatório")
     private Integer idNivelPerigo;
+
+    @NotNull(message = "O endereço é obrigatório")
     private EnderecoRequest endereco;
 
     public String getConteudo() {

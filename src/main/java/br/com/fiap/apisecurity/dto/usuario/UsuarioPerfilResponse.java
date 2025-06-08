@@ -1,12 +1,20 @@
 package br.com.fiap.apisecurity.dto.usuario;
 
-import br.com.fiap.apisecurity.dto.PostagemPerfilResponse;
+import br.com.fiap.apisecurity.dto.postagem.PostagemPerfilResponse;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 import java.util.List;
 
 public class UsuarioPerfilResponse {
+
+    @NotBlank(message = "O nome de usuário é obrigatório.")
     private String nome_usuario;
+
+    @NotBlank(message = "A cor do perfil é obrigatória.")
     private String cor_perfil;
+
+    @NotNull(message = "O ID do tipo de usuário é obrigatório.")
     private Integer idTipoUsuario;
     private List<PostagemPerfilResponse> postagens;
 

@@ -1,13 +1,13 @@
-package br.com.fiap.apisecurity.service;
+package br.com.fiap.apisecurity.service.postagem;
 
-import br.com.fiap.apisecurity.dto.ComentarioResponse;
-import br.com.fiap.apisecurity.dto.PostagemRequest;
-import br.com.fiap.apisecurity.dto.PostagemResponse;
+import br.com.fiap.apisecurity.dto.postagem.ComentarioResponse;
+import br.com.fiap.apisecurity.dto.postagem.PostagemRequest;
+import br.com.fiap.apisecurity.dto.postagem.PostagemResponse;
 import br.com.fiap.apisecurity.dto.endereco.EnderecoResponse;
-import br.com.fiap.apisecurity.mapper.PostagemMapper;
-import br.com.fiap.apisecurity.model.Postagem;
+import br.com.fiap.apisecurity.mapper.postagem.PostagemMapper;
+import br.com.fiap.apisecurity.model.postagem.Postagem;
 import br.com.fiap.apisecurity.model.endereco.Endereco;
-import br.com.fiap.apisecurity.repository.PostagemRepository;
+import br.com.fiap.apisecurity.repository.postagem.PostagemRepository;
 import br.com.fiap.apisecurity.repository.desastres.DesastreRepository;
 import br.com.fiap.apisecurity.repository.desastres.NivelPerigoRepository;
 import br.com.fiap.apisecurity.repository.desastres.ResolucaoRepository;

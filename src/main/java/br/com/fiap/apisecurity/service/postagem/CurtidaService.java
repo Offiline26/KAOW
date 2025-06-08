@@ -1,10 +1,10 @@
-package br.com.fiap.apisecurity.service;
+package br.com.fiap.apisecurity.service.postagem;
 
-import br.com.fiap.apisecurity.model.Curtida;
-import br.com.fiap.apisecurity.model.Postagem;
+import br.com.fiap.apisecurity.model.postagem.Curtida;
+import br.com.fiap.apisecurity.model.postagem.Postagem;
 import br.com.fiap.apisecurity.model.usuarios.Usuario;
-import br.com.fiap.apisecurity.repository.CurtidaRepository;
-import br.com.fiap.apisecurity.repository.PostagemRepository;
+import br.com.fiap.apisecurity.repository.postagem.CurtidaRepository;
+import br.com.fiap.apisecurity.repository.postagem.PostagemRepository;
 import br.com.fiap.apisecurity.repository.usuario.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -1,12 +1,11 @@
-package br.com.fiap.apisecurity.repository;
+package br.com.fiap.apisecurity.repository.postagem;
 
-import br.com.fiap.apisecurity.model.Postagem;
+import br.com.fiap.apisecurity.model.postagem.Postagem;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
 import java.util.Optional;
 
 @Repository

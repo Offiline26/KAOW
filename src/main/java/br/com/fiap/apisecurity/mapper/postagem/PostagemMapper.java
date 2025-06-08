@@ -1,10 +1,9 @@
-package br.com.fiap.apisecurity.mapper;
+package br.com.fiap.apisecurity.mapper.postagem;
 
-import br.com.fiap.apisecurity.dto.ComentarioResponse;
-import br.com.fiap.apisecurity.dto.PostagemRequest;
-import br.com.fiap.apisecurity.dto.PostagemResponse;
+import br.com.fiap.apisecurity.dto.postagem.PostagemRequest;
+import br.com.fiap.apisecurity.dto.postagem.PostagemResponse;
 import br.com.fiap.apisecurity.mapper.endereco.EnderecoMapper;
-import br.com.fiap.apisecurity.model.Postagem;
+import br.com.fiap.apisecurity.model.postagem.Postagem;
 import br.com.fiap.apisecurity.model.desastres.Desastre;
 import br.com.fiap.apisecurity.model.desastres.NivelPerigo;
 import br.com.fiap.apisecurity.model.desastres.Resolucao;
@@ -12,11 +11,7 @@ import br.com.fiap.apisecurity.model.endereco.Endereco;
 import br.com.fiap.apisecurity.model.usuarios.Usuario;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Component
 public class PostagemMapper {

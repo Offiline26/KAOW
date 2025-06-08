@@ -1,7 +1,13 @@
 package br.com.fiap.apisecurity.dto.endereco;
 
+import jakarta.validation.constraints.NotBlank;
+
 public class EnderecoRequest {
+
+    @NotBlank(message = "O bairro é obrigatório")
     private String bairro;
+
+    @NotBlank(message = "O logradouro é obrigatório")
     private String logradouro;
 
     public String getBairro() {

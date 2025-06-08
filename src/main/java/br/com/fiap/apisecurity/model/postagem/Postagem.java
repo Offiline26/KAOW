@@ -1,17 +1,14 @@
-package br.com.fiap.apisecurity.model;
+package br.com.fiap.apisecurity.model.postagem;
 
 import br.com.fiap.apisecurity.model.desastres.Desastre;
 import br.com.fiap.apisecurity.model.desastres.NivelPerigo;
 import br.com.fiap.apisecurity.model.desastres.Resolucao;
 import br.com.fiap.apisecurity.model.endereco.Endereco;
-import br.com.fiap.apisecurity.model.usuarios.TipoUsuario;
 import br.com.fiap.apisecurity.model.usuarios.Usuario;
 import jakarta.persistence.*;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.util.ArrayList;
 import java.util.Set;
 
 @Entity
