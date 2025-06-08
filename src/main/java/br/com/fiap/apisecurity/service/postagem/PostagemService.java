@@ -117,7 +117,17 @@ public class PostagemService {
             response.setNivelPerigo(postagem.getNivelPerigo().getNivel());
         }
 
+        response.setCorUsuario(postagem.getUsuario().getCorPerfil());
+
         return response;
+    }
+
+    @Transactional
+    public void deletarPostagem(Integer id) {
+        Postagem postagem = repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Postagem não encontrada"));
+
+        repository.delete(postagem);
     }
 }
 

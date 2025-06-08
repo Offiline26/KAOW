@@ -37,4 +37,14 @@ public class PostagemController {
         return postagemOpt.map(postagem -> ResponseEntity.ok(postagemService.montarDetalhesPostagem(id)))
                 .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).build());
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deletarPostagem(@PathVariable Integer id) {
+        try {
+            postagemService.deletarPostagem(id);
+            return ResponseEntity.ok("Postagem deletada com sucesso");
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        }
+    }
 }
