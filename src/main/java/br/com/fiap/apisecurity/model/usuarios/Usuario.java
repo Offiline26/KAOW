@@ -35,7 +35,7 @@ public class Usuario {
     private String corPerfil;
 
     @Column(name = "total_curtidas")
-    private Integer totalCurtidas;
+    private Integer totalCurtidas = 0;
 
     @OneToMany(mappedBy = "usuario", fetch = FetchType.LAZY)
     private Set<Postagem> postagens;
