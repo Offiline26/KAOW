@@ -51,4 +51,5 @@ Vinicius Banciela: 	RM 558117
 
 ---
 Link do vídeo: [LINK]
+
 Com KAOW, você está sempre por dentro dos acontecimentos 🌪️🔥🌊
