@@ -1,4 +1,4 @@
-# 🌍 KAOW - Keep Attention on the World 🚨
+# 🌍 KAOW - Keep Attention on the Way 🚨
 
 **KAOW** é um sistema completo de monitoramento e relato de desastres naturais, promovendo informação e segurança em tempo real. A plataforma combina um app mobile (React Native), backend robusto (Spring Boot + Oracle DB) e uma documentação completa via Swagger/OpenAPI.
 
