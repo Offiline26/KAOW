@@ -44,9 +44,11 @@ Feita no Swagger, arquivo yaml enviado, somente colar ao acessar esse link: http
 
 ## 👨‍💻 Participantes
 Thiago Mendes: 		RM 555352
+
 Guilherme Gonçalves: 	RM 558475
+
 Vinicius Banciela: 	RM 558117
 
 ---
-
+Link do vídeo: [LINK]
 Com KAOW, você está sempre por dentro dos acontecimentos 🌪️🔥🌊
