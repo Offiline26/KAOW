@@ -50,6 +50,6 @@ Guilherme Gonçalves: 	RM 558475
 Vinicius Banciela: 	RM 558117
 
 ---
-Link do vídeo: [LINK]
+Link do vídeo: [[KAOW]](https://youtu.be/cfmjdOl0HpE)
 
 Com KAOW, você está sempre por dentro dos acontecimentos 🌪️🔥🌊
